@@ -8,9 +8,10 @@ radius = 0.4
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dgfsc"]
 radius = 0.4
 
-[node name="Player" type="CharacterBody3D" unique_id=615535693 node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" unique_id=615535693 node_paths=PackedStringArray("camera", "interact_ray")]
 script = ExtResource("1_3vyb7")
 camera = NodePath("PlayerCam")
+interact_ray = NodePath("PlayerCam/InteractRay")
 
 [node name="PlayerCol" type="CollisionShape3D" parent="." unique_id=650172227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -19,7 +20,10 @@ shape = SubResource("CapsuleShape3D_dgfsc")
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=900610227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1555559410]
+[node name="InteractRay" type="RayCast3D" parent="PlayerCam" unique_id=483904261]
+target_position = Vector3(0, 0, -3)
+
+[node name="Playermesh" type="MeshInstance3D" parent="." unique_id=1555559410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_dgfsc")
