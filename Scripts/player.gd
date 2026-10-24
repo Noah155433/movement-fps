@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+enum controllers {KEYBOARD, CONTROLLER}
+
 @export_category("Movement")
 @export var speed : float = 5.0
 @export var run_speed: float = 8.0
@@ -8,17 +10,27 @@ var running : bool = false
 @export var camera : Camera3D
 @export var sensitivity : float = 0.01
 @export var joy_sensitivity : float = 3
+var joy_right_vel : Vector2 = Vector2(0.0, 0.0)
 @export_category("misc")
 @export var interact_ray : RayCast3D
-var joy_right_vel : Vector2 = Vector2(0.0, 0.0)
+@export var world_hit_particle : PackedScene
+var current_controller : controllers = controllers.KEYBOARD
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
-		print(interact_ray.get_collider().get_class())
-
+		var instance = world_hit_particle.instantiate()
+		(instance as GPUParticles3D).position = interact_ray.get_collision_point()
+		get_tree().root.add_child(instance)
+		print(interact_ray.get_collision_point())
+		
+	
+	if Input.is_action_just_pressed("shoot") and current_controller == controllers.CONTROLLER:
+		Input.start_joy_vibration(0, 0, 1, 0.1)
+	
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -50,6 +62,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		
 		joy_right_vel = Vector2.ZERO
+		current_controller = controllers.KEYBOARD
 		
 		var mouse_movement = event.screen_relative
 		
@@ -61,6 +74,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation.y += -mouse_movement.x * sensitivity
 		
 	elif event is InputEventJoypadMotion:
+		
+		current_controller = controllers.CONTROLLER
+		
 		if event.get_axis() == JOY_AXIS_RIGHT_X:
 			if abs(event.get_axis_value()) < 0.2:
 				joy_right_vel.x = 0

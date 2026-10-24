@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c61kebk2vvf4r"]
+
+[ext_resource type="Script" uid="uid://cqhhokul3ntp5" path="res://Scripts/world_hit_particles.gd" id="1_17wer"]
+
+[sub_resource type="Curve" id="Curve_i8x1b"]
+_data = [Vector2(0.022727273, 0.6739131), 0.0, 0.0, 0, 0, Vector2(0.32386366, 0.44927543), -1.530434, -1.530434, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i8x1b"]
+curve = SubResource("Curve_i8x1b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i8x1b"]
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 0.05
+use_rotation_3d = true
+rotation_3d_min = Vector3(0, 0, 0)
+rotation_3d_max = Vector3(360, 360, 360)
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 7.9999976
+radial_accel_max = 19.999998
+scale_curve = SubResource("CurveTexture_i8x1b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_didoe"]
+shading_mode = 0
+albedo_color = Color(0.27022192, 0.27022192, 0.2702219, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_17wer"]
+material = SubResource("StandardMaterial3D_didoe")
+size = Vector2(0.1, 0.1)
+
+[node name="WorldHitParticles" type="GPUParticles3D" unique_id=379008627]
+emitting = false
+amount = 60
+lifetime = 0.15000000000000002
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_i8x1b")
+draw_pass_1 = SubResource("QuadMesh_17wer")
+script = ExtResource("1_17wer")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
