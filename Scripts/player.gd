@@ -15,7 +15,7 @@ var joy_right_vel : Vector2 = Vector2(0.0, 0.0)
 @export_category("Player")
 @export var health : int = 100
 @export_category("UI")
-@export var low_health_vignette : TextureRect
+@export var ui : PlayerUI
 @export_category("misc")
 @export var interact_ray : RayCast3D
 var current_controller : controllers = controllers.KEYBOARD
@@ -25,7 +25,18 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
-		pass
+		var collider = interact_ray.get_collider()
+		if collider is door:
+			collider.open_door()
+	
+	if interact_ray.is_colliding() and interact_ray.get_collider() != null:
+		var collider = interact_ray.get_collider()
+		if collider.is_in_group("interactable"):
+			ui.show_interact_label()
+		else:
+			ui.hide_interact_label()
+	else:
+		ui.hide_interact_label()
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -88,10 +99,6 @@ func take_damage(damage : int):
 	health -= damage
 	if health <= 0:
 		queue_free()
-	elif health <= 30:
-		low_health_vignette.visible = true
 
 func heal_damage(damage : int):
 	health += damage
-	if damage > 30:
-		low_health_vignette.visible = false

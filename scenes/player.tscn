@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c61kebk2vvf4r" path="res://scenes/world_hit_particles.tscn" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cudvr4n48h7f5" path="res://Scripts/gun.gd" id="3_qhqgy"]
 [ext_resource type="Shader" uid="uid://cs0isuf0dxehu" path="res://shaders/enemy_test.gdshader" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://b5p0jj0mvfrxb" path="res://Scripts/ui.gd" id="5_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
@@ -20,9 +21,10 @@ size = Vector3(0.1, 0.2, 0.4)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dgfsc"]
 radius = 0.4
 
-[node name="Player" type="CharacterBody3D" unique_id=615535693 node_paths=PackedStringArray("camera", "interact_ray")]
+[node name="Player" type="CharacterBody3D" unique_id=615535693 node_paths=PackedStringArray("camera", "ui", "interact_ray")]
 script = ExtResource("1_3vyb7")
 camera = NodePath("PlayerCam")
+ui = NodePath("UI")
 interact_ray = NodePath("PlayerCam/InteractRay")
 
 [node name="PlayerCol" type="CollisionShape3D" parent="." unique_id=650172227]
@@ -60,6 +62,29 @@ target_position = Vector3(0, 0, -50)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_dgfsc")
+
+[node name="UI" type="Control" parent="." unique_id=800735261]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+script = ExtResource("5_qlg0r")
+
+[node name="Interact label" type="Label" parent="UI" unique_id=392543780]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -195.82
+offset_right = 20.0
+offset_bottom = -172.8197
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
 
 [connection signal="timeout" from="PlayerCam/Gun/FireRateTimer" to="PlayerCam/Gun" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="PlayerCam/Gun/ReloadTimer" to="PlayerCam/Gun" method="_on_reload_timer_timeout"]

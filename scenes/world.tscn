@@ -11,6 +11,7 @@ render_priority = 0
 shader = ExtResource("2_4wyf3")
 shader_parameter/albedo_texture = ExtResource("1_4wyf3")
 shader_parameter/bilinear = false
+shader_parameter/uv_size = Vector2(2, 2)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4wyf3"]
 material = SubResource("ShaderMaterial_4wyf3")

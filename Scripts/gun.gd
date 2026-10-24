@@ -10,6 +10,7 @@ extends Node3D
 @export var max_ammo : int = 13
 @export var fire_rate : float = 0.1
 @export var reload_time : float = 1.5
+@export var has_gun : bool = true
 var ammo : int
 var fire_rate_zero : bool = true
 var reloading : bool = false
@@ -23,7 +24,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	var can_fire : bool = fire_rate_zero and not reloading
+	var can_fire : bool = fire_rate_zero and not reloading and has_gun
 	
 	if Input.is_action_just_pressed("shoot") and ammo > 0 and can_fire:
 		shoot()

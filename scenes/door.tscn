@@ -54,10 +54,10 @@ _data = {
 &"RESET": SubResource("Animation_hpvv5")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_eiqrc"]
-size = Vector3(3, 2.5, 3)
+[sub_resource type="BoxShape3D" id="BoxShape3D_83dcw"]
+size = Vector3(3.1000001, 2.5, 2)
 
-[node name="Door" type="StaticBody3D" unique_id=617639164]
+[node name="Door" type="StaticBody3D" unique_id=617639164 groups=["interactable"]]
 script = ExtResource("1_hpvv5")
 door_open_anim = ExtResource("2_83dcw")
 door_closed_anim = ExtResource("3_la1wf")
@@ -79,11 +79,10 @@ shape = SubResource("BoxShape3D_dgfsc")
 libraries/ = SubResource("AnimationLibrary_hpvv5")
 playback_auto_capture = false
 
-[node name="Player_detection" type="Area3D" parent="." unique_id=1326007942]
+[node name="DoorArea" type="Area3D" parent="." unique_id=670656887]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_detection" unique_id=1226876971]
+[node name="DoorAreaCollision" type="CollisionShape3D" parent="DoorArea" unique_id=1759505009 groups=["interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
-shape = SubResource("BoxShape3D_eiqrc")
+shape = SubResource("BoxShape3D_83dcw")
 
-[connection signal="body_entered" from="Player_detection" to="." method="_on_player_detection_body_entered"]
-[connection signal="body_exited" from="Player_detection" to="." method="_on_player_detection_body_exited"]
+[connection signal="body_exited" from="DoorArea" to="." method="_on_door_area_body_exited"]

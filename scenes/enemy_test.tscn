@@ -10,6 +10,7 @@ render_priority = 0
 shader = ExtResource("3_ainam")
 shader_parameter/albedo_texture = ExtResource("4_mo2s0")
 shader_parameter/bilinear = false
+shader_parameter/uv_size = Vector2(1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.3
