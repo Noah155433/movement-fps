@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://3dxh6h6x3uir"]
+
+[ext_resource type="Script" uid="uid://ca3mhkxwp5vrp" path="res://Scripts/door.gd" id="1_hpvv5"]
+[ext_resource type="Animation" uid="uid://bdiehrjr4lc0t" path="res://animations/door/door_open_default.res" id="2_83dcw"]
+[ext_resource type="Animation" uid="uid://b6dusckv53jri" path="res://animations/door/door_closed_default.res" id="3_la1wf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgfsc"]
+size = Vector3(1, 2.5, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eiqrc"]
+size = Vector3(1, 2.5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5f452"]
+size = Vector3(1, 2.5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dgfsc"]
+size = Vector3(1, 2.5, 0.1)
+
+[sub_resource type="Animation" id="Animation_hpvv5"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorLeft")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.5, 1.25, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorRight")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorColLeft")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DoorColRight")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hpvv5"]
+_data = {
+&"Door_closed": ExtResource("3_la1wf"),
+&"Door_open": ExtResource("2_83dcw"),
+&"RESET": SubResource("Animation_hpvv5")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eiqrc"]
+size = Vector3(3, 2.5, 3)
+
+[node name="Door" type="StaticBody3D" unique_id=617639164]
+script = ExtResource("1_hpvv5")
+door_open_anim = ExtResource("2_83dcw")
+door_closed_anim = ExtResource("3_la1wf")
+
+[node name="DoorLeft" type="MeshInstance3D" parent="." unique_id=1062439690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, 0)
+mesh = SubResource("BoxMesh_dgfsc")
+
+[node name="DoorRight" type="MeshInstance3D" parent="." unique_id=1280603237]
+mesh = SubResource("BoxMesh_eiqrc")
+
+[node name="DoorColLeft" type="CollisionShape3D" parent="." unique_id=1115976891]
+shape = SubResource("BoxShape3D_5f452")
+
+[node name="DoorColRight" type="CollisionShape3D" parent="." unique_id=646965097]
+shape = SubResource("BoxShape3D_dgfsc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1689243915]
+libraries/ = SubResource("AnimationLibrary_hpvv5")
+playback_auto_capture = false
+
+[node name="Player_detection" type="Area3D" parent="." unique_id=1326007942]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_detection" unique_id=1226876971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("BoxShape3D_eiqrc")
+
+[connection signal="body_entered" from="Player_detection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="Player_detection" to="." method="_on_player_detection_body_exited"]

@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name player
 
 enum controllers {KEYBOARD, CONTROLLER}
 

@@ -94,3 +94,4 @@ joypads/ignore_joypad_on_unfocused_application=true
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

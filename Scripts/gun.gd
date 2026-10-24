@@ -55,3 +55,4 @@ func _on_fire_rate_timer_timeout() -> void:
 func _on_reload_timer_timeout() -> void:
 	reloading = false
 	ammo = max_ammo
+	

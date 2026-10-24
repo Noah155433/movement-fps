@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://df3hutyk7td8w" path="res://Scripts/enemy_test.gd" id="1_gep6m"]
 [ext_resource type="PackedScene" uid="uid://wtrkek06b87s" path="res://assets/Idle.fbx" id="1_y7jog"]
+[ext_resource type="Shader" uid="uid://cs0isuf0dxehu" path="res://shaders/enemy_test.gdshader" id="3_ainam"]
+[ext_resource type="Texture2D" uid="uid://bwo4a0ya61vdf" path="res://assets/Idle_0.png" id="4_mo2s0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wyf3"]
+render_priority = 0
+shader = ExtResource("3_ainam")
+shader_parameter/albedo_texture = ExtResource("4_mo2s0")
+shader_parameter/bilinear = false
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.3
@@ -165,6 +173,9 @@ bones/62/scale = Vector3(1.0000008, 1.0000002, 1.0000004)
 bones/63/position = Vector3(-7.544179e-08, 0.1626047, 6.9999224e-09)
 bones/63/rotation = Quaternion(0.34851927, 0.061633002, -0.018058104, 0.93509877)
 bones/63/scale = Vector3(0.9999994, 0.9999992, 1.0000001)
+
+[node name="Ch36" parent="Idle/Skeleton3D" index="0" unique_id=1069181760]
+surface_material_override/0 = SubResource("ShaderMaterial_4wyf3")
 
 [node name="AnimationPlayer" parent="Idle" index="1" unique_id=881442086]
 playback_auto_capture = false

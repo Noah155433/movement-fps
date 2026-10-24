@@ -3,27 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://dn14rl335eh1t" path="res://assets/Textures/Wall_01.png" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cfhu7r1xehmgt" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://1pm4c0m5aa7r" path="res://scenes/enemy_test.tscn" id="1_rwgxs"]
+[ext_resource type="Shader" uid="uid://cs0isuf0dxehu" path="res://shaders/enemy_test.gdshader" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://3dxh6h6x3uir" path="res://scenes/door.tscn" id="5_71j4m"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnsk1"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_rwgxs"]
-sky_material = SubResource("ProceduralSkyMaterial_nnsk1")
-
-[sub_resource type="Environment" id="Environment_4wyf3"]
-background_mode = 2
-sky = SubResource("Sky_rwgxs")
-glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwgxs"]
-shading_mode = 0
-albedo_texture = ExtResource("1_4wyf3")
-uv1_scale = Vector3(3, 3, 3)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wyf3"]
+render_priority = 0
+shader = ExtResource("2_4wyf3")
+shader_parameter/albedo_texture = ExtResource("1_4wyf3")
+shader_parameter/bilinear = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4wyf3"]
-material = SubResource("StandardMaterial3D_rwgxs")
+material = SubResource("ShaderMaterial_4wyf3")
 size = Vector2(10, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dgfsc"]
@@ -33,13 +23,6 @@ size = Vector3(10, 1, 10)
 
 [node name="EnemyTest" parent="." unique_id=432576904 instance=ExtResource("1_rwgxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=490344589]
-environment = SubResource("Environment_4wyf3")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=456063858]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=644373111]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -52,7 +35,7 @@ mesh = SubResource("PlaneMesh_4wyf3")
 shape = SubResource("BoxShape3D_dgfsc")
 
 [node name="Floor2" type="StaticBody3D" parent="." unique_id=1493167341]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -5, -0.5, 0)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, -0.5, -4)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2" unique_id=2145337075]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
@@ -62,3 +45,12 @@ mesh = SubResource("PlaneMesh_4wyf3")
 shape = SubResource("BoxShape3D_dgfsc")
 
 [node name="Player" parent="." unique_id=615535693 instance=ExtResource("1_nnsk1")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=747366036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+light_energy = 2.0
+omni_range = 8.29161
+omni_attenuation = 0.1
+
+[node name="Door" parent="." unique_id=617639164 instance=ExtResource("5_71j4m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.8469224, -0.049999833, -0.09649348)

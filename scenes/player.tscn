@@ -3,11 +3,18 @@
 [ext_resource type="Script" uid="uid://qv1h0y4v5kdq" path="res://Scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://c61kebk2vvf4r" path="res://scenes/world_hit_particles.tscn" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cudvr4n48h7f5" path="res://Scripts/gun.gd" id="3_qhqgy"]
+[ext_resource type="Shader" uid="uid://cs0isuf0dxehu" path="res://shaders/enemy_test.gdshader" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhqgy"]
+render_priority = 0
+shader = ExtResource("4_dqkch")
+shader_parameter/bilinear = false
+
 [sub_resource type="BoxMesh" id="BoxMesh_dgfsc"]
+material = SubResource("ShaderMaterial_qhqgy")
 size = Vector3(0.1, 0.2, 0.4)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dgfsc"]
@@ -53,13 +60,6 @@ target_position = Vector3(0, 0, -50)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_dgfsc")
-
-[node name="UI" type="Control" parent="." unique_id=650196788]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-mouse_filter = 2
 
 [connection signal="timeout" from="PlayerCam/Gun/FireRateTimer" to="PlayerCam/Gun" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="PlayerCam/Gun/ReloadTimer" to="PlayerCam/Gun" method="_on_reload_timer_timeout"]
