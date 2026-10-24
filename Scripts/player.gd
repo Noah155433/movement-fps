@@ -3,33 +3,28 @@ extends CharacterBody3D
 enum controllers {KEYBOARD, CONTROLLER}
 
 @export_category("Movement")
-@export var speed : float = 5.0
-@export var run_speed: float = 8.0
+@export var speed : float = 2.0
+@export var run_speed: float = 3.5
 var running : bool = false
 @export_category("Camera")
 @export var camera : Camera3D
 @export var sensitivity : float = 0.01
 @export var joy_sensitivity : float = 3
 var joy_right_vel : Vector2 = Vector2(0.0, 0.0)
+@export_category("Player")
+@export var health : int = 100
+@export_category("UI")
+@export var low_health_vignette : TextureRect
 @export_category("misc")
 @export var interact_ray : RayCast3D
-@export var world_hit_particle : PackedScene
 var current_controller : controllers = controllers.KEYBOARD
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
-		var instance = world_hit_particle.instantiate()
-		(instance as GPUParticles3D).position = interact_ray.get_collision_point()
-		get_tree().root.add_child(instance)
-		print(interact_ray.get_collision_point())
-		
-	
-	if Input.is_action_just_pressed("shoot") and current_controller == controllers.CONTROLLER:
-		Input.start_joy_vibration(0, 0, 1, 0.1)
-	
+		pass
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -87,4 +82,15 @@ func _unhandled_input(event: InputEvent) -> void:
 				joy_right_vel.y = 0
 			else:
 				joy_right_vel.y = -event.get_axis_value() * joy_sensitivity
-		
+
+func take_damage(damage : int):
+	health -= damage
+	if health <= 0:
+		queue_free()
+	elif health <= 30:
+		low_health_vignette.visible = true
+
+func heal_damage(damage : int):
+	health += damage
+	if damage > 30:
+		low_health_vignette.visible = false

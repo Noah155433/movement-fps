@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://qv1h0y4v5kdq" path="res://Scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://c61kebk2vvf4r" path="res://scenes/world_hit_particles.tscn" id="2_g2els"]
+[ext_resource type="Script" uid="uid://cudvr4n48h7f5" path="res://Scripts/gun.gd" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgfsc"]
+size = Vector3(0.1, 0.2, 0.4)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dgfsc"]
 radius = 0.4
@@ -13,7 +17,6 @@ radius = 0.4
 script = ExtResource("1_3vyb7")
 camera = NodePath("PlayerCam")
 interact_ray = NodePath("PlayerCam/InteractRay")
-world_hit_particle = ExtResource("2_g2els")
 
 [node name="PlayerCol" type="CollisionShape3D" parent="." unique_id=650172227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -25,7 +28,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 [node name="InteractRay" type="RayCast3D" parent="PlayerCam" unique_id=483904261]
 target_position = Vector3(0, 0, -3)
 
+[node name="Gun" type="Node3D" parent="PlayerCam" unique_id=707398395 node_paths=PackedStringArray("gun_ray", "fire_rate_timer", "reload_timer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.49999988, -0.90000004)
+script = ExtResource("3_qhqgy")
+gun_ray = NodePath("../GunRay")
+world_hit_particle = ExtResource("2_g2els")
+fire_rate_timer = NodePath("FireRateTimer")
+reload_timer = NodePath("ReloadTimer")
+
+[node name="GunMesh" type="MeshInstance3D" parent="PlayerCam/Gun" unique_id=527547353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100000024, 0.19999999)
+mesh = SubResource("BoxMesh_dgfsc")
+
+[node name="FireRateTimer" type="Timer" parent="PlayerCam/Gun" unique_id=1136120593]
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="PlayerCam/Gun" unique_id=874113324]
+one_shot = true
+
+[node name="GunRay" type="RayCast3D" parent="PlayerCam" unique_id=1382506998]
+target_position = Vector3(0, 0, -50)
+
 [node name="Playermesh" type="MeshInstance3D" parent="." unique_id=1555559410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_dgfsc")
+
+[node name="UI" type="Control" parent="." unique_id=650196788]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[connection signal="timeout" from="PlayerCam/Gun/FireRateTimer" to="PlayerCam/Gun" method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="PlayerCam/Gun/ReloadTimer" to="PlayerCam/Gun" method="_on_reload_timer_timeout"]

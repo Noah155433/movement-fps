@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://2eecviy1bbhw"]
 
+[ext_resource type="Texture2D" uid="uid://dn14rl335eh1t" path="res://assets/Textures/Wall_01.png" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://cfhu7r1xehmgt" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://1pm4c0m5aa7r" path="res://scenes/enemy_test.tscn" id="1_rwgxs"]
 
@@ -15,13 +16,23 @@ background_mode = 2
 sky = SubResource("Sky_rwgxs")
 glow_enabled = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_eiqrc"]
-size = Vector3(10, 1, 10)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwgxs"]
+shading_mode = 0
+albedo_texture = ExtResource("1_4wyf3")
+uv1_scale = Vector3(3, 3, 3)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4wyf3"]
+material = SubResource("StandardMaterial3D_rwgxs")
+size = Vector2(10, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dgfsc"]
 size = Vector3(10, 1, 10)
 
 [node name="World" type="Node3D" unique_id=1006344446]
+
+[node name="EnemyTest" parent="." unique_id=432576904 instance=ExtResource("1_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=490344589]
 environment = SubResource("Environment_4wyf3")
@@ -34,12 +45,20 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=987518931]
-mesh = SubResource("BoxMesh_eiqrc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+mesh = SubResource("PlaneMesh_4wyf3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=836814255]
 shape = SubResource("BoxShape3D_dgfsc")
 
-[node name="EnemyTest" parent="Floor" unique_id=432576904 instance=ExtResource("1_rwgxs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
+[node name="Floor2" type="StaticBody3D" parent="." unique_id=1493167341]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -5, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2" unique_id=2145337075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+mesh = SubResource("PlaneMesh_4wyf3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2" unique_id=399310224]
+shape = SubResource("BoxShape3D_dgfsc")
 
 [node name="Player" parent="." unique_id=615535693 instance=ExtResource("1_nnsk1")]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cqhhokul3ntp5" path="res://Scripts/world_hit_particles.gd" id="1_17wer"]
 
 [sub_resource type="Curve" id="Curve_i8x1b"]
-_data = [Vector2(0.022727273, 0.6739131), 0.0, 0.0, 0, 0, Vector2(0.32386366, 0.44927543), -1.530434, -1.530434, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.022727273, 0.6739131), 0.0, 0.0, 0, 0, Vector2(0.3096591, 0.42028993), -0.5545053, -0.5545053, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_i8x1b"]
@@ -32,7 +32,7 @@ size = Vector2(0.1, 0.1)
 [node name="WorldHitParticles" type="GPUParticles3D" unique_id=379008627]
 emitting = false
 amount = 60
-lifetime = 0.15000000000000002
+lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_i8x1b")
