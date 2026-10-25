@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn14rl335eh1t"
-path.s3tc="res://.godot/imported/Wall_01.png-cb4d3fa1122200cc30a3e8e0026bec3d.s3tc.ctex"
+uid="uid://cqgf7wrgvypib"
+path.s3tc="res://.godot/imported/Room_1.png-da0e8519ab7362bac9e4854486827576.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "15cdebecb189296bd61fe72fceae6bcb"
+}
 
 [deps]
 
-source_file="res://assets/Textures/Wall_01.png"
-dest_files=["res://.godot/imported/Wall_01.png-cb4d3fa1122200cc30a3e8e0026bec3d.s3tc.ctex"]
+source_file="res://assets/Models/Room01/Room_1.png"
+dest_files=["res://.godot/imported/Room_1.png-da0e8519ab7362bac9e4854486827576.s3tc.ctex"]
 
 [params]
 

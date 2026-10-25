@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bd8hivmokoogn"]
+
+[ext_resource type="Script" uid="uid://b1i518okkg1f8" path="res://Systems/WorldSystem/world_system.gd" id="1_11xrq"]
+[ext_resource type="Script" uid="uid://byvlf3stcjnkj" path="res://Systems/WorldSystem/WorldSystemMesh.gd" id="2_741hn"]
+[ext_resource type="PackedScene" uid="uid://cao37iv0qrk1v" path="res://assets/Models/Room01/Room.fbx" id="3_rfug0"]
+
+[sub_resource type="Resource" id="Resource_741hn"]
+script = ExtResource("2_741hn")
+mesh = ExtResource("3_rfug0")
+metadata/_custom_type_script = "uid://byvlf3stcjnkj"
+
+[node name="WorldSystem" type="Node3D" unique_id=345083883]
+script = ExtResource("1_11xrq")
+meshes = Array[ExtResource("2_741hn")]([SubResource("Resource_741hn")])

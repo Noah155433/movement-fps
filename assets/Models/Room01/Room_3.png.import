@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3nmtu345so2q"
-path="res://.godot/imported/Idle_1.png-a740b943121d99b38998b99fc07a3c71.ctex"
+uid="uid://du2l3mmmqlaqx"
+path="res://.godot/imported/Room_3.png-b9b3a0ec2bd4df3b884b72760ad9da77.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "cc54f89ab2f803775b259523df174726"
+"md5": "6a1ae6eb330c90ef8e81bfe0119aae25"
 }
 
 [deps]
 
-source_file="res://assets/Idle_1.png"
-dest_files=["res://.godot/imported/Idle_1.png-a740b943121d99b38998b99fc07a3c71.ctex"]
+source_file="res://assets/Models/Room01/Room_3.png"
+dest_files=["res://.godot/imported/Room_3.png-b9b3a0ec2bd4df3b884b72760ad9da77.ctex"]
 
 [params]
 

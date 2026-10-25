@@ -2,24 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwo4a0ya61vdf"
-path.s3tc="res://.godot/imported/Idle_0.png-66df91653f91d42a699b92f4f01cff76.s3tc.ctex"
+uid="uid://d3nmtu345so2q"
+path="res://.godot/imported/Idle_1.png-623c6373919166a7cb275372405fd702.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
-"md5": "d9c94c76dd797c213321f89289510df2"
+"md5": "cc54f89ab2f803775b259523df174726"
 }
 
 [deps]
 
-source_file="res://assets/Idle_0.png"
-dest_files=["res://.godot/imported/Idle_0.png-66df91653f91d42a699b92f4f01cff76.s3tc.ctex"]
+source_file="res://assets/Models/TestDummy/Idle_1.png"
+dest_files=["res://.godot/imported/Idle_1.png-623c6373919166a7cb275372405fd702.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -41,4 +40,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

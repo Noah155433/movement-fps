@@ -16,8 +16,9 @@ func open_door():
 	door_is_open = true
 
 func close_door():
-	animation_player.play_backwards(door_open_anim.resource_name)
-	door_is_open = false
+	if door_is_open:
+		animation_player.play_backwards(door_open_anim.resource_name)
+		door_is_open = false
 
 
 func _on_door_area_body_exited(body: Node3D) -> void:

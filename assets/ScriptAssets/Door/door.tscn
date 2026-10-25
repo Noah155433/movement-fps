@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://3dxh6h6x3uir"]
 
-[ext_resource type="Script" uid="uid://ca3mhkxwp5vrp" path="res://Scripts/door.gd" id="1_hpvv5"]
-[ext_resource type="Animation" uid="uid://bdiehrjr4lc0t" path="res://animations/door/door_open_default.res" id="2_83dcw"]
-[ext_resource type="Animation" uid="uid://b6dusckv53jri" path="res://animations/door/door_closed_default.res" id="3_la1wf"]
+[ext_resource type="Script" uid="uid://ca3mhkxwp5vrp" path="res://assets/ScriptAssets/Door/door.gd" id="1_hpvv5"]
+[ext_resource type="Animation" uid="uid://bdiehrjr4lc0t" path="res://assets/Animations/door/door_open_default.res" id="2_83dcw"]
+[ext_resource type="Animation" uid="uid://b6dusckv53jri" path="res://assets/Animations/door/door_closed_default.res" id="3_la1wf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dgfsc"]
 size = Vector3(1, 2.5, 0.1)

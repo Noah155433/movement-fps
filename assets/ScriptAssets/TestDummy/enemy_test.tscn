@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://1pm4c0m5aa7r"]
 
-[ext_resource type="Script" uid="uid://df3hutyk7td8w" path="res://Scripts/enemy_test.gd" id="1_gep6m"]
-[ext_resource type="PackedScene" uid="uid://wtrkek06b87s" path="res://assets/Idle.fbx" id="1_y7jog"]
-[ext_resource type="Texture2D" uid="uid://bwo4a0ya61vdf" path="res://assets/Idle_0.png" id="4_mo2s0"]
+[ext_resource type="Script" uid="uid://df3hutyk7td8w" path="res://assets/ScriptAssets/TestDummy/enemy_test.gd" id="1_gep6m"]
+[ext_resource type="PackedScene" uid="uid://wtrkek06b87s" path="res://assets/Models/TestDummy/Idle.fbx" id="1_y7jog"]
+[ext_resource type="Texture2D" uid="uid://bwo4a0ya61vdf" path="res://assets/Models/TestDummy/Idle_0.png" id="4_mo2s0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo2s0"]
 albedo_color = Color(1, 0, 0, 1)
@@ -39,7 +39,7 @@ particle_hit_material = SubResource("StandardMaterial3D_mo2s0")
 [node name="Idle" parent="." unique_id=1391037094 instance=ExtResource("1_y7jog")]
 transform = Transform3D(1.15, 0, 0, 0, 1.15, 0, 0, 0, 1.15, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Idle" index="0" unique_id=48690850]
+[node name="Skeleton3D" parent="Idle" index="0" unique_id=1784290734]
 bones/0/position = Vector3(0.00046453835, 0.99523634, 0.005141588)
 bones/0/rotation = Quaternion(-0.031258084, -0.046537302, -0.029548472, 0.99799)
 bones/1/position = Vector3(0, 0.09717224, -0.011802064)
@@ -193,10 +193,10 @@ bones/63/position = Vector3(-7.544179e-08, 0.1626047, 6.9999224e-09)
 bones/63/rotation = Quaternion(0.34851927, 0.061633002, -0.018058104, 0.93509877)
 bones/63/scale = Vector3(0.9999994, 0.9999992, 1.0000001)
 
-[node name="Ch36" parent="Idle/Skeleton3D" index="0" unique_id=1069181760]
+[node name="Ch36" parent="Idle/Skeleton3D" index="0" unique_id=2079085738]
 surface_material_override/0 = SubResource("StandardMaterial3D_71j4m")
 
-[node name="AnimationPlayer" parent="Idle" index="1" unique_id=881442086]
+[node name="AnimationPlayer" parent="Idle" index="1" unique_id=1054650147]
 playback_auto_capture = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1035658109]
