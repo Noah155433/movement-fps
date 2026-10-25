@@ -3,19 +3,12 @@
 [ext_resource type="Script" uid="uid://qv1h0y4v5kdq" path="res://Scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://c61kebk2vvf4r" path="res://scenes/world_hit_particles.tscn" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cudvr4n48h7f5" path="res://Scripts/gun.gd" id="3_qhqgy"]
-[ext_resource type="Shader" uid="uid://cs0isuf0dxehu" path="res://shaders/enemy_test.gdshader" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://b5p0jj0mvfrxb" path="res://Scripts/ui.gd" id="5_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhqgy"]
-render_priority = 0
-shader = ExtResource("4_dqkch")
-shader_parameter/bilinear = false
-
 [sub_resource type="BoxMesh" id="BoxMesh_dgfsc"]
-material = SubResource("ShaderMaterial_qhqgy")
 size = Vector3(0.1, 0.2, 0.4)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dgfsc"]
