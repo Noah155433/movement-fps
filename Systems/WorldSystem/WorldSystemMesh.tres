@@ -6,3 +6,6 @@
 [resource]
 script = ExtResource("1_wmnwx")
 mesh = ExtResource("1_qt5td")
+position = Vector3(0.74, 0, 0)
+rotation = Vector3(0.2, 0, 0)
+scale = Vector3(2.215, 2.215, 2.215)

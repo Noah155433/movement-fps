@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WorldSystemLight" format=3 uid="uid://c2s7mk14bay5o"]
+
+[ext_resource type="Script" uid="uid://cc8ucvdbmkvu5" path="res://Systems/WorldSystem/LightTypes/OmniData.gd" id="1_xtt0y"]
+[ext_resource type="Script" uid="uid://yp2o7w3uyg1g" path="res://Systems/WorldSystem/WorldSystemLight.gd" id="2_qf3f8"]
+
+[sub_resource type="Resource" id="Resource_07imi"]
+script = ExtResource("1_xtt0y")
+metadata/_custom_type_script = "uid://cc8ucvdbmkvu5"
+
+[resource]
+script = ExtResource("2_qf3f8")
+omniLight = SubResource("Resource_07imi")

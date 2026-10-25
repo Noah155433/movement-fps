@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Light3DData" format=3 uid="uid://dqo3pojsbmjbk"]
+
+[ext_resource type="Script" uid="uid://17w3pjgsratc" path="res://Systems/WorldSystem/LightTypes/Light3DData.gd" id="1_g6xrc"]
+
+[resource]
+script = ExtResource("1_g6xrc")
