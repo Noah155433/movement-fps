@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://wtrkek06b87s" path="res://assets/Idle.fbx" id="1_y7jog"]
 [ext_resource type="Texture2D" uid="uid://bwo4a0ya61vdf" path="res://assets/Idle_0.png" id="4_mo2s0"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo2s0"]
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("4_mo2s0")
+
 [sub_resource type="Gradient" id="Gradient_71j4m"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.28994083, 0.52366865, 0.75147927)
@@ -30,6 +34,7 @@ radius = 0.3
 
 [node name="EnemyTest" type="CharacterBody3D" unique_id=432576904]
 script = ExtResource("1_gep6m")
+particle_hit_material = SubResource("StandardMaterial3D_mo2s0")
 
 [node name="Idle" parent="." unique_id=1391037094 instance=ExtResource("1_y7jog")]
 transform = Transform3D(1.15, 0, 0, 0, 1.15, 0, 0, 0, 1.15, 0, 0, 0)

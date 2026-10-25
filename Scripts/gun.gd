@@ -44,8 +44,12 @@ func shoot():
 		var collider = gun_ray.get_collider()
 		if collider is enemyTest:
 			collider.take_damage()
-		var instance = world_hit_particle.instantiate()
-		(instance as GPUParticles3D).position = gun_ray.get_collision_point()
+		var instance = world_hit_particle.instantiate() as world_gun_particle
+		instance.position = gun_ray.get_collision_point()
+		if collider.has_method("get_particle_hit_material"): 
+			instance.set_material(collider.get_particle_hit_material())
+		else:
+			instance.reset_material()
 		get_tree().root.add_child(instance)
 	
 
