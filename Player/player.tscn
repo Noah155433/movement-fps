@@ -8,6 +8,17 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
 
+[sub_resource type="Environment" id="Environment_04avt"]
+tonemap_mode = 3
+ssao_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_07imi"]
+auto_exposure_enabled = true
+dof_blur_far_enabled = true
+dof_blur_near_enabled = true
+
 [sub_resource type="BoxMesh" id="BoxMesh_dgfsc"]
 size = Vector3(0.1, 0.2, 0.4)
 
@@ -26,6 +37,10 @@ shape = SubResource("CapsuleShape3D_dgfsc")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=900610227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+environment = SubResource("Environment_04avt")
+attributes = SubResource("CameraAttributesPractical_07imi")
+current = true
+fov = 37.849285
 
 [node name="InteractRay" type="RayCast3D" parent="PlayerCam" unique_id=483904261]
 target_position = Vector3(0, 0, -3)

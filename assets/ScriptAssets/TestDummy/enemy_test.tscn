@@ -3,31 +3,31 @@
 [ext_resource type="Script" uid="uid://df3hutyk7td8w" path="res://assets/ScriptAssets/TestDummy/enemy_test.gd" id="1_gep6m"]
 [ext_resource type="PackedScene" uid="uid://wtrkek06b87s" path="res://assets/Models/TestDummy/Idle.fbx" id="1_y7jog"]
 [ext_resource type="Texture2D" uid="uid://bwo4a0ya61vdf" path="res://assets/Models/TestDummy/Idle_0.png" id="4_mo2s0"]
+[ext_resource type="Shader" uid="uid://nio12jychmmc" path="res://assets/ScriptAssets/TestDummy/EnemyBurnShader.gdshader" id="4_omv7a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo2s0"]
 albedo_color = Color(1, 0, 0, 1)
 albedo_texture = ExtResource("4_mo2s0")
 
-[sub_resource type="Gradient" id="Gradient_71j4m"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.28994083, 0.52366865, 0.75147927)
-colors = PackedColorArray(0, 0, 0, 1, 0.20511743, 0.20511743, 0.20511743, 1, 0.4390491, 0.43904912, 0.43904912, 1, 1, 1, 1, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_omv7a"]
+frequency = 0.2
+fractal_type = 2
+fractal_lacunarity = 2.425
+fractal_gain = 0.505
+domain_warp_enabled = true
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_k0juu"]
-noise_type = 5
-frequency = 0.1147
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4wyf3"]
-noise = SubResource("FastNoiseLite_k0juu")
-color_ramp = SubResource("Gradient_71j4m")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_px2d4"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_omv7a")
 seamless = true
-in_3d_space = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71j4m"]
-disable_ambient_light = true
-albedo_texture = ExtResource("4_mo2s0")
-normal_enabled = true
-normal_texture = SubResource("NoiseTexture2D_4wyf3")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcuxl"]
+render_priority = 0
+shader = ExtResource("4_omv7a")
+shader_parameter/albedo_texture = ExtResource("4_mo2s0")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_px2d4")
+shader_parameter/trans_amount = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.3
@@ -194,7 +194,7 @@ bones/63/rotation = Quaternion(0.34851927, 0.061633002, -0.018058104, 0.93509877
 bones/63/scale = Vector3(0.9999994, 0.9999992, 1.0000001)
 
 [node name="Ch36" parent="Idle/Skeleton3D" index="0" unique_id=2079085738]
-surface_material_override/0 = SubResource("StandardMaterial3D_71j4m")
+surface_material_override/0 = SubResource("ShaderMaterial_dcuxl")
 
 [node name="AnimationPlayer" parent="Idle" index="1" unique_id=1054650147]
 playback_auto_capture = false

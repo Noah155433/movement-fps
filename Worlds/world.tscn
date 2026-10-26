@@ -3,27 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://1pm4c0m5aa7r" path="res://assets/ScriptAssets/TestDummy/enemy_test.tscn" id="1_fuoa0"]
 [ext_resource type="PackedScene" uid="uid://cfhu7r1xehmgt" path="res://Player/player.tscn" id="2_04avt"]
 [ext_resource type="PackedScene" uid="uid://3dxh6h6x3uir" path="res://assets/ScriptAssets/Door/door.tscn" id="3_r1b28"]
-[ext_resource type="PackedScene" uid="uid://bd8hivmokoogn" path="res://Systems/WorldSystem/WorldSystem.tscn" id="4_04avt"]
 [ext_resource type="PackedScene" uid="uid://cao37iv0qrk1v" path="res://assets/Models/Room01/Room.fbx" id="4_07imi"]
-[ext_resource type="Script" uid="uid://byvlf3stcjnkj" path="res://Systems/WorldSystem/WorldSystemMesh.gd" id="5_r1b28"]
-[ext_resource type="Script" uid="uid://yp2o7w3uyg1g" path="res://Systems/WorldSystem/WorldSystemLight.gd" id="7_07imi"]
-[ext_resource type="Script" uid="uid://cc8ucvdbmkvu5" path="res://Systems/WorldSystem/LightTypes/OmniData.gd" id="8_hdcsk"]
-
-[sub_resource type="Resource" id="Resource_11xrq"]
-script = ExtResource("5_r1b28")
-mesh = ExtResource("4_07imi")
-position = Vector3(0, 1.5, 0)
-scale = Vector3(1.5, 1.5, 1.5)
-metadata/_custom_type_script = "uid://byvlf3stcjnkj"
-
-[sub_resource type="Resource" id="Resource_4qppp"]
-script = ExtResource("8_hdcsk")
-metadata/_custom_type_script = "uid://cc8ucvdbmkvu5"
-
-[sub_resource type="Resource" id="Resource_07imi"]
-script = ExtResource("7_07imi")
-omni_light = SubResource("Resource_4qppp")
-metadata/_custom_type_script = "uid://yp2o7w3uyg1g"
+[ext_resource type="Script" uid="uid://dxlasmq3n6jpd" path="res://Systems/FlickeringLights/emissive_flickering_area_light_3d.gd" id="6_r1b28"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dgfsc"]
 size = Vector3(3.9, 0.5, 12.3)
@@ -38,21 +19,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, -2.5)
 [node name="Door" parent="." unique_id=617639164 instance=ExtResource("3_r1b28")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35307765, -0.049999833, 3.0035064)
 
-[node name="WorldSystem" parent="." unique_id=345083883 instance=ExtResource("4_04avt")]
-meshes = Array[ExtResource("5_r1b28")]([SubResource("Resource_11xrq")])
-lights = Array[ExtResource("7_07imi")]([SubResource("Resource_07imi")])
-
-[node name="LightContainer" type="Node3D" parent="WorldSystem" unique_id=494124173]
-
-[node name="@OmniLight3D@29914" type="OmniLight3D" parent="WorldSystem/LightContainer" unique_id=353207729]
-
-[node name="MeshContainer" type="Node3D" parent="WorldSystem" unique_id=1894575192]
-
-[node name="Room" type="Node3D" parent="WorldSystem/MeshContainer" unique_id=302141772 instance=ExtResource("4_07imi")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.5, 0)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1188988367]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=692743830]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("BoxShape3D_dgfsc")
+
+[node name="Room" parent="." unique_id=302141772 instance=ExtResource("4_07imi")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.5, 0)
+
+[node name="EmissiveFlickeringAreaLight3D" type="AreaLight3D" parent="." unique_id=1983234743]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.6, 3, -3.7)
+light_color = Color(1, 0.09803922, 0.12156863, 1)
+light_energy = 0.2
+light_size = 0.81
+area_size = Vector2(0.9, 0.9)
+script = ExtResource("6_r1b28")
+on_time = 0.0
+off_time = 0.0
+on_time_variation = 10.0
+off_time_variation = 1.0
+light_depth = 0.01
+metadata/_custom_type_script = "uid://dxlasmq3n6jpd"

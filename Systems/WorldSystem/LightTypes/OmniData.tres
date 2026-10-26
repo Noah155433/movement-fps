@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="OmniData" format=3 uid="uid://cocr0fjrnyfpg"]
-
-[ext_resource type="Script" uid="uid://cc8ucvdbmkvu5" path="res://Systems/WorldSystem/LightTypes/OmniData.gd" id="1_cawj5"]
-
-[resource]
-script = ExtResource("1_cawj5")
