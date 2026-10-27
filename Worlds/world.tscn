@@ -9,6 +9,17 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_dgfsc"]
 size = Vector3(3.9, 0.5, 12.3)
 
+[sub_resource type="Environment" id="Environment_dgfsc"]
+tonemap_mode = 3
+glow_enabled = true
+glow_bloom = 1.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.15
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_eiqrc"]
+auto_exposure_scale = 0.1
+auto_exposure_speed = 0.1
+
 [node name="World" type="Node3D" unique_id=1006344446]
 
 [node name="EnemyTest" parent="." unique_id=432576904 instance=ExtResource("1_fuoa0")]
@@ -26,13 +37,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("BoxShape3D_dgfsc")
 
 [node name="Room" parent="." unique_id=302141772 instance=ExtResource("4_07imi")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.5, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.006673336, 1.4999999, 0.006501317)
 
-[node name="EmissiveFlickeringAreaLight3D" type="AreaLight3D" parent="." unique_id=1983234743]
+[node name="EmissiveFlickeringAreaLight3D2" type="AreaLight3D" parent="." unique_id=1204667613]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.6, 3, -3.7)
 light_color = Color(1, 0.09803922, 0.12156863, 1)
-light_energy = 0.2
 light_size = 0.81
+area_range = 10.0
 area_size = Vector2(0.9, 0.9)
 script = ExtResource("6_r1b28")
 on_time = 0.0
@@ -41,3 +52,7 @@ on_time_variation = 10.0
 off_time_variation = 1.0
 light_depth = 0.01
 metadata/_custom_type_script = "uid://dxlasmq3n6jpd"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=627465465]
+environment = SubResource("Environment_dgfsc")
+camera_attributes = SubResource("CameraAttributesPractical_eiqrc")

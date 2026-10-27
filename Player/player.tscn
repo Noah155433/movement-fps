@@ -14,13 +14,8 @@ ssao_enabled = true
 glow_enabled = true
 volumetric_fog_enabled = true
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_07imi"]
-auto_exposure_enabled = true
-dof_blur_far_enabled = true
-dof_blur_near_enabled = true
-
 [sub_resource type="BoxMesh" id="BoxMesh_dgfsc"]
-size = Vector3(0.1, 0.2, 0.4)
+size = Vector3(0.1, 0.1, 0.3)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dgfsc"]
 radius = 0.4
@@ -38,7 +33,6 @@ shape = SubResource("CapsuleShape3D_dgfsc")
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=900610227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 environment = SubResource("Environment_04avt")
-attributes = SubResource("CameraAttributesPractical_07imi")
 current = true
 fov = 37.849285
 
@@ -54,7 +48,7 @@ fire_rate_timer = NodePath("FireRateTimer")
 reload_timer = NodePath("ReloadTimer")
 
 [node name="GunMesh" type="MeshInstance3D" parent="PlayerCam/Gun" unique_id=527547353]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100000024, 0.19999999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117136, 0.41553402, 0.45)
 mesh = SubResource("BoxMesh_dgfsc")
 
 [node name="FireRateTimer" type="Timer" parent="PlayerCam/Gun" unique_id=1136120593]
@@ -93,6 +87,19 @@ offset_bottom = -172.8197
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
+
+[node name="Inventory" type="Control" parent="UI" unique_id=1207964030]
+visible = false
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Inventory" unique_id=667871690]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.2231029, 0.2231029, 0.22310287, 1)
 
 [connection signal="timeout" from="PlayerCam/Gun/FireRateTimer" to="PlayerCam/Gun" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="PlayerCam/Gun/ReloadTimer" to="PlayerCam/Gun" method="_on_reload_timer_timeout"]

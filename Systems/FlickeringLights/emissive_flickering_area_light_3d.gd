@@ -25,7 +25,8 @@ func _ready() -> void:
 	material.emission_energy_multiplier = light_energy
 	instance.mesh.surface_set_material(0, material)
 	mesh = instance
-	add_sibling(instance)
+	mesh.transform = transform
+	add_sibling.call_deferred(mesh)
 
 func _on_flicker_timer_timeout() -> void:
 	if visible == true:

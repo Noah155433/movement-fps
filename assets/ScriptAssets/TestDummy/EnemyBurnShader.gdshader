@@ -7,7 +7,10 @@ uniform sampler2D noise_texture;
 uniform float trans_amount;
 
 void vertex() {
-	// Called for every vertex the material is visible on.
+	vec4 world_vertex = MODEL_MATRIX * vec4(VERTEX, 1.0);
+	world_vertex = floor(world_vertex * 100.0) / 100.0;
+	POSITION = PROJECTION_MATRIX * VIEW_MATRIX * world_vertex;
+	POSITION = floor(POSITION * 100.0) / 100.0; 
 }
 
 void fragment() {
@@ -19,9 +22,9 @@ void fragment() {
 	float alpha = clamp(1.0 - (trans_amount * 2.0 - noise), 0.0, 1.0);
 	alpha = pow(alpha * 2.0, 3);
 	
-	if (alpha < 1.2)
+	if (alpha < 1.5)
 	{
-		vec3 emissive_color = vec3(clamp(1.0 - alpha / 1.2, 0.2, 1.0), clamp(0.0 + alpha / 10.0, 0.0, 0.2), 0.0) * clamp(alpha, 0.0, 1.0);
+		vec3 emissive_color = mix(vec3(2.0, 0.0, 0.0), vec3(2.0, 0.3, 0.0), clamp(alpha - 0.5, 0.0, 1.0)) * ((alpha > 1.0) ? clamp(1.5 - alpha, 0.0, 1.0) : clamp(alpha, 0.0, 1.0));
 		EMISSION = emissive_color;
 	}
 	
