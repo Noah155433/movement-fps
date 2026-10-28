@@ -22,5 +22,5 @@ func close_door():
 
 
 func _on_door_area_body_exited(body: Node3D) -> void:
-	if body is player:
+	if body is Player:
 		close_door()

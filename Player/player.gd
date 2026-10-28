@@ -1,7 +1,5 @@
 extends CharacterBody3D
-class_name player
-
-enum controllers {KEYBOARD, CONTROLLER}
+class_name Player
 
 @export_category("Movement")
 @export var speed : float = 2.0
@@ -18,10 +16,11 @@ var joy_right_vel : Vector2 = Vector2(0.0, 0.0)
 @export var ui : PlayerUI
 @export_category("misc")
 @export var interact_ray : RayCast3D
-var current_controller : controllers = controllers.KEYBOARD
+var inventory : Inventory = Inventory.new()
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	inventory.add_count("pistol_ammo", 10)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
@@ -69,7 +68,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		
 		joy_right_vel = Vector2.ZERO
-		current_controller = controllers.KEYBOARD
 		
 		var mouse_movement = event.screen_relative
 		
@@ -81,8 +79,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation.y += -mouse_movement.x * sensitivity
 		
 	elif event is InputEventJoypadMotion:
-		
-		current_controller = controllers.CONTROLLER
 		
 		if event.get_axis() == JOY_AXIS_RIGHT_X:
 			if abs(event.get_axis_value()) < 0.2:

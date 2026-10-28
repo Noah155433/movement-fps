@@ -15,10 +15,15 @@ var ammo : int
 var fire_rate_zero : bool = true
 var reloading : bool = false
 
+var inventory : Inventory
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ammo = max_ammo
+	
+	var player : Player = get_owner()
+	if player:
+		inventory = player.inventory
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,8 +38,9 @@ func _process(delta: float) -> void:
 	
 
 func reload():
-	reloading = true
-	reload_timer.start(reload_time)
+	if inventory.get_item_count("pistol_ammo") > 0:
+		reloading = true
+		reload_timer.start(reload_time)
 
 func shoot():
 	ammo -= 1
@@ -59,5 +65,10 @@ func _on_fire_rate_timer_timeout() -> void:
 
 func _on_reload_timer_timeout() -> void:
 	reloading = false
-	ammo = max_ammo
+	if inventory.get_item_count("pistol_ammo") >= max_ammo:
+		ammo = max_ammo
+		inventory.add_count("pistol_ammo", -max_ammo)
+	else:
+		ammo = inventory.get_item_count("pistol_ammo")
+		inventory.remove_item("pistol_ammo")
 	
