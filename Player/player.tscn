@@ -8,12 +8,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
 
-[sub_resource type="Environment" id="Environment_04avt"]
-tonemap_mode = 3
-ssao_enabled = true
-glow_enabled = true
-volumetric_fog_enabled = true
-
 [sub_resource type="BoxMesh" id="BoxMesh_dgfsc"]
 size = Vector3(0.1, 0.1, 0.3)
 
@@ -32,7 +26,6 @@ shape = SubResource("CapsuleShape3D_dgfsc")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=900610227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
-environment = SubResource("Environment_04avt")
 current = true
 fov = 37.849285
 

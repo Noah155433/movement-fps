@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode depth_prepass_alpha;
+render_mode depth_prepass_alpha, vertex_lighting;
 
 uniform sampler2D albedo_texture;
 uniform sampler2D noise_texture;
@@ -7,10 +7,15 @@ uniform sampler2D noise_texture;
 uniform float trans_amount;
 
 void vertex() {
-	vec4 world_vertex = MODEL_MATRIX * vec4(VERTEX, 1.0);
-	world_vertex = floor(world_vertex * 100.0) / 100.0;
-	POSITION = PROJECTION_MATRIX * VIEW_MATRIX * world_vertex;
-	POSITION = floor(POSITION * 100.0) / 100.0; 
+    vec4 clip_pos = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
+
+    vec3 ndc = clip_pos.xyz / clip_pos.w;
+
+    ndc.xy = floor(ndc.xy * 100.0) / 100.0;
+
+    clip_pos.xyz = ndc * clip_pos.w;
+
+    POSITION = clip_pos;
 }
 
 void fragment() {
