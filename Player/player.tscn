@@ -27,13 +27,13 @@ shape = SubResource("CapsuleShape3D_dgfsc")
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=900610227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 current = true
-fov = 37.849285
 
 [node name="InteractRay" type="RayCast3D" parent="PlayerCam" unique_id=483904261]
 target_position = Vector3(0, 0, -3)
+collide_with_areas = true
 
 [node name="Gun" type="Node3D" parent="PlayerCam" unique_id=707398395 node_paths=PackedStringArray("gun_ray", "fire_rate_timer", "reload_timer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.49999988, -0.90000004)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6392861, -0.6716379, -0.8658945)
 script = ExtResource("3_qhqgy")
 gun_ray = NodePath("../GunRay")
 world_hit_particle = ExtResource("2_g2els")

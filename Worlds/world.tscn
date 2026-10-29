@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cfhu7r1xehmgt" path="res://Player/player.tscn" id="2_04avt"]
 [ext_resource type="PackedScene" uid="uid://3dxh6h6x3uir" path="res://assets/ScriptAssets/Door/door.tscn" id="3_r1b28"]
 [ext_resource type="Shader" uid="uid://nio12jychmmc" path="res://assets/ScriptAssets/TestDummy/EnemyBurnShader.gdshader" id="4_r1b28"]
+[ext_resource type="PackedScene" uid="uid://btt65dxu7h1hu" path="res://Systems/ItemSystem/PickupItem.tscn" id="6_07imi"]
 [ext_resource type="Script" uid="uid://c8ruekn3wv5gx" path="res://Systems/FlickeringLights/flickering_area_light_3d.gd" id="6_r1b28"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dgfsc"]
@@ -12,7 +13,10 @@ size = Vector3(3.9, 0.5, 12.3)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r1b28"]
 render_priority = 0
 shader = ExtResource("4_r1b28")
-shader_parameter/trans_amount = 0.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(0, 0, 0, 0)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/alpha_scissor = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_w2mg1"]
 _surfaces = [{
@@ -49,9 +53,8 @@ shadow_mesh = SubResource("ArrayMesh_w2mg1")
 
 [sub_resource type="Environment" id="Environment_dgfsc"]
 tonemap_mode = 3
-glow_enabled = true
 fog_enabled = true
-fog_density = 0.1
+fog_density = 0.05
 volumetric_fog_density = 0.15
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_eiqrc"]
@@ -61,7 +64,7 @@ auto_exposure_speed = 0.1
 [node name="World" type="Node3D" unique_id=1006344446]
 
 [node name="EnemyTest" parent="." unique_id=432576904 instance=ExtResource("1_fuoa0")]
-transform = Transform3D(1, 0, 0, 0, 0.9961947, -0.08715574, 0, 0.08715574, 0.9961947, 0.74055856, 0.03556609, -3.164354)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74055856, 0.03556609, -3.164354)
 
 [node name="Player" parent="." unique_id=615535693 instance=ExtResource("2_04avt")]
 
@@ -93,3 +96,18 @@ off_time = 0.0
 on_time_variation = 10.0
 off_time_variation = 1.0
 metadata/_custom_type_script = "uid://c8ruekn3wv5gx"
+
+[node name="PickupItem" parent="." unique_id=39795739 instance=ExtResource("6_07imi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6368613, 0.1, -2.0913014)
+item_name = "pistol_ammo"
+item_count = 10
+
+[node name="PickupItem3" parent="." unique_id=1777830115 instance=ExtResource("6_07imi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6368613, 0.1, -3.0913014)
+item_name = "pistol_ammo"
+item_count = 10
+
+[node name="PickupItem2" parent="." unique_id=1593514448 instance=ExtResource("6_07imi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6368613, 0.1, -2.5913014)
+item_name = "pistol_ammo"
+item_count = 10

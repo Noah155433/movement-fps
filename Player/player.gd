@@ -24,9 +24,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
-		var collider = interact_ray.get_collider()
+		var collider = interact_ray.get_collider() as Node3D
+		print(collider)
 		if collider is door:
 			collider.open_door()
+		if collider.get_owner() and collider.get_owner() is PickupItem:
+			pickUpItem(collider.get_owner())
 	
 	if interact_ray.is_colliding() and interact_ray.get_collider() != null:
 		var collider = interact_ray.get_collider()
@@ -36,7 +39,12 @@ func _process(_delta: float) -> void:
 			ui.hide_interact_label()
 	else:
 		ui.hide_interact_label()
-	
+
+func pickUpItem(item : PickupItem):
+	inventory.add_count(item.item_name, item.item_count)
+	inventory.print_inventory()
+	item.queue_free()
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

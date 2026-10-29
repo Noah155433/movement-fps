@@ -123,20 +123,13 @@ bind/28/name = &"heel.02.R"
 bind/28/bone = -1
 bind/28/pose = Transform3D(8.606882e-12, 1.0140904e-09, -0.0010046896, -0.0010046881, -7.210735e-12, -8.60661e-12, -7.210811e-12, 0.0010046883, 4.2526355e-10, -0.0004589849, -0.00060000014, 0.015646674)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ls5lr"]
-frequency = 0.02
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_alh1b"]
-width = 256
-height = 256
-noise = SubResource("FastNoiseLite_ls5lr")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j1gt3"]
 render_priority = 0
 shader = ExtResource("4_omv7a")
-shader_parameter/albedo_texture = ExtResource("4_mo2s0")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_alh1b")
-shader_parameter/trans_amount = 0.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(0, 0, 0, 0)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/alpha_scissor = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_px2d4"]
 radius = 0.10449219
@@ -628,7 +621,7 @@ joint_rotation = Vector3(0, 1.5707964, 0)
 body_offset = Transform3D(0.01092529, 0, -1.1856173e-08, -1.1361408e-08, -4.10364e-09, -0.010925285, 1.1641532e-10, 0.010925287, -3.085006e-09, 1.1175871e-08, 0.0009740833, 7.3341653e-09)
 bone_name = "forearm.L"
 joint_constraints/angular_limit_enabled = true
-joint_constraints/angular_limit_upper = 159.99997
+joint_constraints/angular_limit_upper = 159.99995
 joint_constraints/angular_limit_lower = 0.0
 joint_constraints/angular_limit_bias = 0.3
 joint_constraints/angular_limit_softness = 0.9
@@ -680,7 +673,7 @@ joint_rotation = Vector3(0, 1.5707964, 0)
 body_offset = Transform3D(0.01092529, -8.1490725e-10, -6.501068e-09, -6.3919288e-09, -2.6193447e-10, -0.010925284, 1.1641532e-10, 0.010925288, -5.820766e-10, -4.935451e-05, 0.0009738067, -1.5538535e-06)
 bone_name = "forearm.R"
 joint_constraints/angular_limit_enabled = true
-joint_constraints/angular_limit_upper = 159.99997
+joint_constraints/angular_limit_upper = 159.99995
 joint_constraints/angular_limit_lower = 0.0
 joint_constraints/angular_limit_bias = 0.3
 joint_constraints/angular_limit_softness = 0.9
@@ -714,7 +707,7 @@ joint_type = 2
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.427947e-09, -1.4327884e-08, 0.21483468)
 body_offset = Transform3D(0.010925285, -1.4810375e-13, 3.1670278e-10, 3.1670302e-10, 3.783498e-10, -0.0109252855, 1.463274e-13, 0.010925304, 1.1350494e-09, -1.1641532e-10, 0.0023471303, -8.731149e-11)
 bone_name = "thigh.L"
-joint_constraints/swing_span = 39.999996
+joint_constraints/swing_span = 39.999992
 joint_constraints/twist_span = 15.0
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8
@@ -766,7 +759,7 @@ joint_type = 2
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4591127e-09, -1.346944e-08, 0.21483468)
 body_offset = Transform3D(0.010925285, -1.9984014e-15, 7.420227e-11, 7.420258e-11, 3.3469405e-10, -0.0109252855, 2.220446e-16, 0.010925304, 1.0913936e-09, 0, 0.0023471303, -8.731149e-11)
 bone_name = "thigh.R"
-joint_constraints/swing_span = 39.999996
+joint_constraints/swing_span = 39.999992
 joint_constraints/twist_span = 15.0
 joint_constraints/bias = 0.3
 joint_constraints/softness = 0.8

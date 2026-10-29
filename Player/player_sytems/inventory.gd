@@ -3,6 +3,11 @@ class_name Inventory
 
 var inventory : Array[ItemSlot]
 
+func print_inventory():
+	for slot in inventory:
+		print(slot.m_item)
+		print(slot.m_count)
+
 func _init() -> void:
 	inventory.resize(6)
 	for i in inventory.size():
