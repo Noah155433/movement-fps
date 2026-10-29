@@ -10,7 +10,7 @@ var door_is_open : bool = false
 func _ready():
 	animation_player.play(door_closed_anim.resource_name)
 
-func open_door():
+func interact(player : Player):
 	if door_is_open: return
 	animation_player.play(door_open_anim.resource_name)
 	door_is_open = true

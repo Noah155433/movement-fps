@@ -1,45 +1,53 @@
-extends Node
+extends Control
 class_name Inventory
 
-var inventory : Array[ItemSlot]
+class InventorySlot:
+	var item_name : String = "None"
+	var item_count : int = 0
+	
+	func _init(name : String, count : int) -> void:
+		item_name = name
+		item_count = count
 
-func print_inventory():
-	for slot in inventory:
-		print(slot.m_item)
-		print(slot.m_count)
+var inventory : Array[InventorySlot]
 
 func _init() -> void:
 	inventory.resize(6)
 	for i in inventory.size():
-		inventory[i] = ItemSlot.new()
+		inventory[i] = InventorySlot.new("None", 0)
+
+func print_inventory():
+	for slot : InventorySlot in inventory:
+		print(slot.item_name)
+		print(slot.item_count)
 
 func remove_item(item_name : String):
 	for i in inventory.size():
-		var slot : ItemSlot = inventory[i]
-		if slot.m_item == item_name:
-			slot.m_item = "None"
-			slot.m_count = 0
+		var slot : InventorySlot = inventory[i]
+		if slot.item_name == item_name:
+			slot.item_name = "None"
+			slot.item_count = 0
 			return
 	return
 
 func get_item_count(item : String) -> int:
 	for slot in inventory:
-		if slot.m_item == item:
-			return slot.get_count()
+		if slot.item_name == item:
+			return slot.item_count
 	return 0
 
 func add_count(item : String, count : int) -> int:
 	for i in inventory.size():
-		var slot : ItemSlot = inventory[i]
-		if slot.m_item == item:
-			slot.add_count(count)
+		var slot : InventorySlot = inventory[i]
+		if slot.item_name == item:
+			slot.item_count += count
 			return 0
 	
 	for i in inventory.size():
-		var slot : ItemSlot = inventory[i]
-		if slot and slot.m_item == "None":
-			slot.set_item(item)
-			slot.set_count(count)
+		var slot : InventorySlot = inventory[i]
+		if slot and slot.item_name == "None":
+			slot.item_name = item
+			slot.item_count = count
 			return 0
 	
 	return 1

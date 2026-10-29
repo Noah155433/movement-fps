@@ -2,7 +2,7 @@ extends Node3D
 
 @export_category("nodes")
 @export var gun_ray : RayCast3D
-@export var world_hit_particle : PackedScene
+@export var hit_particle : PackedScene
 @export var fire_rate_timer : Timer
 @export var reload_timer : Timer
 
@@ -15,7 +15,7 @@ var ammo : int
 var fire_rate_zero : bool = true
 var reloading : bool = false
 
-var inventory : Inventory
+@export var inventory : Inventory
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	
 
 func reload():
-	if inventory.get_item_count("pistol_ammo") > 0:
+	if inventory.get_item_count("pistol_ammo") > 0 and ammo < max_ammo:
 		reloading = true
 		reload_timer.start(reload_time)
 
@@ -47,16 +47,17 @@ func shoot():
 	fire_rate_zero = false
 	fire_rate_timer.start(fire_rate)
 	if gun_ray.is_colliding():
-		var collider = gun_ray.get_collider()
-		if collider is enemyTest:
-			collider.take_damage()
-		var instance = world_hit_particle.instantiate() as world_gun_particle
+		
+		var instance = hit_particle.instantiate()
 		instance.position = gun_ray.get_collision_point()
-		if collider.has_method("get_particle_hit_material"): 
-			instance.set_material(collider.get_particle_hit_material())
-		else:
-			instance.reset_material()
-		get_tree().root.add_child(instance)
+		get_tree().get_root().add_child(instance)
+		
+		var collider : Node3D = gun_ray.get_collider().get_owner() if gun_ray.get_collider().get_owner() else gun_ray.get_collider()
+		if collider.is_in_group("enemy"):
+			if collider.has_method("take_damage"): 
+				collider.take_damage(10)
+			else:
+				print("enemy node doesn't have take damage function")
 	
 
 func _on_fire_rate_timer_timeout() -> void:
@@ -65,10 +66,10 @@ func _on_fire_rate_timer_timeout() -> void:
 
 func _on_reload_timer_timeout() -> void:
 	reloading = false
-	if inventory.get_item_count("pistol_ammo") >= max_ammo:
+	if inventory.get_item_count("pistol_ammo") >= max_ammo - ammo:
+		inventory.add_count("pistol_ammo", -(max_ammo - ammo))
 		ammo = max_ammo
-		inventory.add_count("pistol_ammo", -max_ammo)
 	else:
-		ammo = inventory.get_item_count("pistol_ammo")
+		ammo += inventory.get_item_count("pistol_ammo")
 		inventory.remove_item("pistol_ammo")
 	

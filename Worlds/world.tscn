@@ -89,6 +89,7 @@ camera_attributes = SubResource("CameraAttributesPractical_eiqrc")
 
 [node name="FlickeringOmniLight3D" type="OmniLight3D" parent="." unique_id=1054641974]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.737452, 2.918336, -3.6816058)
+visible = false
 light_color = Color(1, 0.14117648, 0, 1)
 script = ExtResource("6_r1b28")
 on_time = 0.0

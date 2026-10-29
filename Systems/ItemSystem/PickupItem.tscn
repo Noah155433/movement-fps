@@ -1,14 +1,25 @@
 [gd_scene format=3 uid="uid://btt65dxu7h1hu"]
 
 [ext_resource type="Script" uid="uid://bg2ibs20nd68u" path="res://Systems/ItemSystem/pickup_item.gd" id="1_nwjb2"]
+[ext_resource type="Shader" uid="uid://nio12jychmmc" path="res://assets/ScriptAssets/TestDummy/EnemyBurnShader.gdshader" id="2_xhb2h"]
+[ext_resource type="Texture2D" uid="uid://damb8pvlnmi77" path="res://icon.svg" id="3_b78dm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r1b28"]
+render_priority = 0
+shader = ExtResource("2_xhb2h")
+shader_parameter/albedo_color = Color(0.8332526, 0.14663196, 0.22986996, 1)
+shader_parameter/emission_color = Color(0, 0, 0, 0)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/alpha_scissor = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_xhb2h"]
+material = SubResource("ShaderMaterial_r1b28")
 size = Vector3(0.3, 0.2, 0.15)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dgfsc"]
 radius = 0.275
 
-[node name="PickupItem" type="Node3D" unique_id=39795739]
+[node name="PickupItem" type="Node3D" unique_id=39795739 groups=["interactable"]]
 script = ExtResource("1_nwjb2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1922405253]
@@ -18,3 +29,10 @@ mesh = SubResource("BoxMesh_xhb2h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=917854427]
 shape = SubResource("SphereShape3D_dgfsc")
+
+[node name="Label" type="Sprite3D" parent="." unique_id=1007840345]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false
+billboard = 1
+no_depth_test = true
+texture = ExtResource("3_b78dm")

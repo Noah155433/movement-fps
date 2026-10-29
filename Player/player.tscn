@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://qv1h0y4v5kdq" path="res://Player/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://c61kebk2vvf4r" path="res://assets/Particles/WorldHitParticle/world_hit_particles.tscn" id="2_g2els"]
+[ext_resource type="Script" uid="uid://7ihpsttoqifi" path="res://Player/player_sytems/interact_ray.gd" id="2_k53q1"]
 [ext_resource type="Script" uid="uid://cudvr4n48h7f5" path="res://Player/player_sytems/gun.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://b5p0jj0mvfrxb" path="res://Player/player_sytems/ui.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://bdpafiq2u3rxt" path="res://Player/player_sytems/inventory.gd" id="6_fhl08"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
@@ -14,11 +16,11 @@ size = Vector3(0.1, 0.1, 0.3)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dgfsc"]
 radius = 0.4
 
-[node name="Player" type="CharacterBody3D" unique_id=615535693 node_paths=PackedStringArray("camera", "ui", "interact_ray")]
+[node name="Player" type="CharacterBody3D" unique_id=615535693 node_paths=PackedStringArray("camera", "ui", "inventory")]
 script = ExtResource("1_3vyb7")
 camera = NodePath("PlayerCam")
 ui = NodePath("UI")
-interact_ray = NodePath("PlayerCam/InteractRay")
+inventory = NodePath("UI/Inventory")
 
 [node name="PlayerCol" type="CollisionShape3D" parent="." unique_id=650172227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -28,15 +30,17 @@ shape = SubResource("CapsuleShape3D_dgfsc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 current = true
 
-[node name="InteractRay" type="RayCast3D" parent="PlayerCam" unique_id=483904261]
+[node name="InteractRay" type="RayCast3D" parent="PlayerCam" unique_id=483904261 node_paths=PackedStringArray("player")]
 target_position = Vector3(0, 0, -3)
 collide_with_areas = true
+script = ExtResource("2_k53q1")
+player = NodePath("../..")
 
 [node name="Gun" type="Node3D" parent="PlayerCam" unique_id=707398395 node_paths=PackedStringArray("gun_ray", "fire_rate_timer", "reload_timer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6392861, -0.6716379, -0.8658945)
 script = ExtResource("3_qhqgy")
 gun_ray = NodePath("../GunRay")
-world_hit_particle = ExtResource("2_g2els")
+hit_particle = ExtResource("2_g2els")
 fire_rate_timer = NodePath("FireRateTimer")
 reload_timer = NodePath("ReloadTimer")
 
@@ -61,38 +65,54 @@ mesh = SubResource("CapsuleMesh_dgfsc")
 [node name="UI" type="Control" parent="." unique_id=800735261]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 640.0
+offset_bottom = 512.0
 mouse_filter = 2
 script = ExtResource("5_qlg0r")
 
 [node name="Interact label" type="Label" parent="UI" unique_id=392543780]
+visible = false
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -195.82
+offset_top = 132.72
 offset_right = 20.0
-offset_bottom = -172.8197
+offset_bottom = 177.72012
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Inventory" type="Control" parent="UI" unique_id=1207964030]
 visible = false
 anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 640.0
+offset_bottom = 512.0
+script = ExtResource("6_fhl08")
 
-[node name="ColorRect" type="ColorRect" parent="UI/Inventory" unique_id=667871690]
-visible = false
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Background" type="ColorRect" parent="UI/Inventory" unique_id=667871690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+
+[node name="Control" type="Control" parent="UI/Inventory" unique_id=1734432639]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_right = 320.0
+offset_bottom = 150.0
+grow_horizontal = 2
 
 [connection signal="timeout" from="PlayerCam/Gun/FireRateTimer" to="PlayerCam/Gun" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="PlayerCam/Gun/ReloadTimer" to="PlayerCam/Gun" method="_on_reload_timer_timeout"]
