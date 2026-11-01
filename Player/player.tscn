@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://7ihpsttoqifi" path="res://Player/player_sytems/interact_ray.gd" id="2_k53q1"]
 [ext_resource type="Script" uid="uid://cudvr4n48h7f5" path="res://Player/player_sytems/gun.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://b5p0jj0mvfrxb" path="res://Player/player_sytems/ui.gd" id="5_qlg0r"]
-[ext_resource type="Script" uid="uid://bdpafiq2u3rxt" path="res://Player/player_sytems/inventory.gd" id="6_fhl08"]
+[ext_resource type="PackedScene" uid="uid://bg364xwaw6y3n" path="res://Player/player_sytems/inventory.tscn" id="6_fhl08"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
@@ -88,32 +88,8 @@ theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Inventory" type="Control" parent="UI" unique_id=1207964030]
-process_mode = 3
-visible = false
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 512.0
-script = ExtResource("6_fhl08")
-
-[node name="Background" type="ColorRect" parent="UI/Inventory" unique_id=667871690]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.2231029, 0.2231029, 0.22310287, 1)
-
-[node name="Control" type="Control" parent="UI/Inventory" unique_id=1734432639]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -320.0
-offset_right = 320.0
-offset_bottom = 150.0
-grow_horizontal = 2
+[node name="Inventory" parent="UI" unique_id=1896112937 instance=ExtResource("6_fhl08")]
+layout_mode = 0
 
 [connection signal="timeout" from="PlayerCam/Gun/FireRateTimer" to="PlayerCam/Gun" method="_on_fire_rate_timer_timeout"]
 [connection signal="timeout" from="PlayerCam/Gun/ReloadTimer" to="PlayerCam/Gun" method="_on_reload_timer_timeout"]

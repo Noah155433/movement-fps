@@ -1,24 +1,36 @@
 extends Control
 class_name Inventory
 
-class InventorySlot:
-	var item_name : String = "None"
-	var item_count : int = 0
-	
-	func _init(name : String, count : int) -> void:
-		item_name = name
-		item_count = count
-
 var inventory : Array[InventorySlot]
+const INVENTORY_SLOT = preload("uid://c6uewx65flx8")
 
-func _init() -> void:
-	inventory.resize(6)
+const inventory_size : int = 8
+
+func _ready() -> void:
+	inventory.resize(inventory_size + 3)
 	for i in inventory.size():
-		inventory[i] = InventorySlot.new("None", 0)
-
-func _process(delta: float) -> void:
+		var instance = INVENTORY_SLOT.instantiate() as InventorySlot
+		add_child(instance)
+		instance.item_count = 0
+		instance.item_icon = ImageTexture.create_from_image(Image.load_from_file("res://icon.svg"))
+		instance.slot_id = i
+		instance.position_id = i
+		instance.position.y = 100
+		instance.set_size(Vector2(128, 128))
+		instance.set_pos_id(0)
+		instance.is_filled = false
+		instance.is_dummy = i < 1 or i > (inventory_size + 2)
+		inventory[i] = instance
+		
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory()
+	if Input.is_action_just_pressed("left") and inventory[0].position_id < 0:
+		for slot in inventory:
+			slot.set_pos_id(1)
+	if Input.is_action_just_pressed("right") and inventory[inventory.size() - 1].position_id > 3:
+		for slot in inventory:
+			slot.set_pos_id(-1)
 
 func toggle_inventory():
 	if visible:
@@ -26,19 +38,19 @@ func toggle_inventory():
 		get_tree().paused = false
 	else:
 		visible = true
+		for i in inventory.size():
+			inventory[i].position_id = i
+			inventory[i].set_pos_id(0)
 		get_tree().paused = true
-
-func print_inventory():
-	for slot : InventorySlot in inventory:
-		print(slot.item_name)
-		print(slot.item_count)
 
 func remove_item(item_name : String):
 	for i in inventory.size():
 		var slot : InventorySlot = inventory[i]
 		if slot.item_name == item_name:
 			slot.item_name = "None"
+			slot.item_icon = null
 			slot.item_count = 0
+			slot.filled = false
 			return
 	return
 
@@ -57,7 +69,8 @@ func add_count(item : String, count : int) -> int:
 	
 	for i in inventory.size():
 		var slot : InventorySlot = inventory[i]
-		if slot and slot.item_name == "None":
+		if not slot.is_dummy and not slot.is_filled:
+			slot.is_filled = true
 			slot.item_name = item
 			slot.item_count = count
 			return 0
