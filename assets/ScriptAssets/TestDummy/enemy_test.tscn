@@ -624,7 +624,7 @@ body_offset = Transform3D(0.01092529, 0, -1.1856173e-08, -1.1361408e-08, -4.1036
 bone_name = "forearm.L"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 0.0
-joint_constraints/angular_limit_lower = -159.99997
+joint_constraints/angular_limit_lower = -159.99995
 joint_constraints/angular_limit_bias = 0.3
 joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
@@ -676,7 +676,7 @@ body_offset = Transform3D(0.01092529, -8.1490725e-10, -6.501068e-09, -6.3919288e
 bone_name = "forearm.R"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 0.0
-joint_constraints/angular_limit_lower = -159.99997
+joint_constraints/angular_limit_lower = -159.99995
 joint_constraints/angular_limit_bias = 0.3
 joint_constraints/angular_limit_softness = 0.9
 joint_constraints/angular_limit_relaxation = 1.0
@@ -768,7 +768,7 @@ joint_constraints/softness = 0.8
 joint_constraints/relaxation = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Human/metarig/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone thigh_R" unique_id=1982600664]
-transform = Transform3D(0.9999999, 0, 7.1054274e-14, 0, 0, 1, -4.818368e-14, -1, 0, -0.020834997, -2.7939677e-09, -0.039369762)
+transform = Transform3D(0.99999964, 0, 1.4210855e-14, 0, 0, 1, -5.839773e-14, -1, 0, -0.020834997, -2.7939677e-09, -0.039369762)
 shape = SubResource("CapsuleShape3D_3baub")
 
 [node name="Physical Bone shin_R" type="PhysicalBone3D" parent="Human/metarig/Skeleton3D/PhysicalBoneSimulator3D" unique_id=1285959932]

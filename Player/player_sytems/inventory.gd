@@ -16,6 +16,18 @@ func _init() -> void:
 	for i in inventory.size():
 		inventory[i] = InventorySlot.new("None", 0)
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("inventory"):
+		toggle_inventory()
+
+func toggle_inventory():
+	if visible:
+		visible = false
+		get_tree().paused = false
+	else:
+		visible = true
+		get_tree().paused = true
+
 func print_inventory():
 	for slot : InventorySlot in inventory:
 		print(slot.item_name)
