@@ -2,45 +2,74 @@
 
 [ext_resource type="Texture2D" uid="uid://damb8pvlnmi77" path="res://icon.svg" id="1_5w27c"]
 [ext_resource type="Script" uid="uid://mbwc7idw3icl" path="res://Player/player_sytems/inventory_slot.gd" id="1_t37kh"]
+[ext_resource type="Texture2D" uid="uid://cgiwtprq4j4dq" path="res://assets/Textures/Inventory/slot_background.png" id="2_12aaw"]
 
 [node name="InventorySlot" type="Control" unique_id=199465460]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 128.0
-offset_bottom = 128.0
+offset_right = 150.0
+offset_bottom = 150.0
 script = ExtResource("1_t37kh")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=889708455]
+[node name="Background" type="TextureRect" parent="." unique_id=165497659]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.27256283, 0.0054574315, 0, 1)
+texture = ExtResource("2_12aaw")
 
-[node name="Icon" type="TextureRect" parent="." unique_id=847245745]
+[node name="Icon" type="TextureRect" parent="Background" unique_id=847245745]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 128.0
+offset_bottom = 128.0
 texture = ExtResource("1_5w27c")
 expand_mode = 1
 
-[node name="Count" type="Label" parent="." unique_id=55914291]
+[node name="Count" type="Label" parent="Background" unique_id=55914291]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
+offset_left = -18.0
+offset_top = -45.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Interaction" type="Control" parent="." unique_id=912978879]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -11.0
+offset_right = 64.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Delete" type="Button" parent="Interaction" unique_id=1056284589]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+text = "DELETE"
+
+[connection signal="button_down" from="Interaction/Delete" to="." method="_on_delete_button_down"]

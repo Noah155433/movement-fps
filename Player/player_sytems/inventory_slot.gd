@@ -1,9 +1,11 @@
 extends Control
 class_name InventorySlot
 
-@onready var icon: TextureRect = $Icon
-@onready var count: Label = $Count
-@onready var color_rect: ColorRect = $ColorRect
+@onready var icon: TextureRect = $Background/Icon
+@onready var count: Label = $Background/Count
+@onready var background: TextureRect = $Background
+@onready var interaction: Control = $Interaction
+
 
 var item_icon : ImageTexture:
 	set(new):
@@ -30,12 +32,23 @@ var is_dummy : bool = false:
 			icon.queue_free()
 			count.queue_free()
 
+func toggle_interact_menu():
+	if not is_dummy and is_filled:
+		interaction.visible = not interaction.visible
+
+func close_interact_menu():
+	interaction.visible = false
+
 func set_pos_id(new_id : int) -> void:
 	position_id += new_id
 		
-	position.x = position_id * (size.x + 32)
+	position.x = 20 + position_id * size.x
 	
 	if position_id == 1:
-		color_rect.color = Color.WHITE
+		background.self_modulate = Color.WHITE
 	else:
-		color_rect.color = Color.RED
+		background.self_modulate = Color.RED
+
+
+func _on_delete_button_down() -> void:
+	item_count -= 1

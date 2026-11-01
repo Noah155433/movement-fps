@@ -6,6 +6,8 @@ const INVENTORY_SLOT = preload("uid://c6uewx65flx8")
 
 const inventory_size : int = 8
 
+var active_slot = 1
+
 func _ready() -> void:
 	inventory.resize(inventory_size + 3)
 	for i in inventory.size():
@@ -15,8 +17,7 @@ func _ready() -> void:
 		instance.item_icon = ImageTexture.create_from_image(Image.load_from_file("res://icon.svg"))
 		instance.slot_id = i
 		instance.position_id = i
-		instance.position.y = 100
-		instance.set_size(Vector2(128, 128))
+		instance.position.y = 50
 		instance.set_pos_id(0)
 		instance.is_filled = false
 		instance.is_dummy = i < 1 or i > (inventory_size + 2)
@@ -25,23 +26,42 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory()
-	if Input.is_action_just_pressed("left") and inventory[0].position_id < 0:
+	if Input.is_action_just_pressed("left") and inventory[0].position_id < 0 and visible:
+		inventory[active_slot].close_interact_menu()
+		active_slot -= 1
 		for slot in inventory:
 			slot.set_pos_id(1)
-	if Input.is_action_just_pressed("right") and inventory[inventory.size() - 1].position_id > 3:
+	if Input.is_action_just_pressed("right") and inventory[inventory.size() - 1].position_id > 3 and visible:
+		inventory[active_slot].close_interact_menu()
+		active_slot += 1
 		for slot in inventory:
 			slot.set_pos_id(-1)
+	if Input.is_action_just_pressed("interact") and visible:
+		inventory[active_slot].toggle_interact_menu()
+	
 
 func toggle_inventory():
 	if visible:
 		visible = false
 		get_tree().paused = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 		visible = true
 		for i in inventory.size():
 			inventory[i].position_id = i
 			inventory[i].set_pos_id(0)
 		get_tree().paused = true
+
+func remove_item_from_active_slot():
+	var slot : InventorySlot = inventory[active_slot]
+	if not slot.is_dummy and slot.is_filled:
+		slot.item_name = "None"
+		slot.item_icon = null
+		slot.item_count = 0
+		slot.is_filled = false
+		return
+	return
 
 func remove_item(item_name : String):
 	for i in inventory.size():
@@ -59,6 +79,15 @@ func get_item_count(item : String) -> int:
 		if slot.item_name == item:
 			return slot.item_count
 	return 0
+
+func add_count_to_active_slot(item : String, count : int) -> int:
+	var slot = inventory[active_slot]
+	if not slot.is_dummy and slot.is_filled:
+		slot.item_count += count
+		if slot.item_count <= 0: remove_item_from_active_slot()
+		return 0
+	
+	return 1
 
 func add_count(item : String, count : int) -> int:
 	for i in inventory.size():
