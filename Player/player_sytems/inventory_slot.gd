@@ -7,7 +7,7 @@ class_name InventorySlot
 @onready var interaction: Control = $Interaction
 
 
-var item_icon : ImageTexture:
+var item_icon : Texture2D:
 	set(new):
 		item_icon = new
 		if icon: icon.texture = new
@@ -29,6 +29,7 @@ var is_dummy : bool = false:
 	set(new):
 		is_dummy = new
 		if is_dummy:
+			background.self_modulate = Color.WHITE
 			icon.queue_free()
 			count.queue_free()
 
@@ -39,16 +40,32 @@ func toggle_interact_menu():
 func close_interact_menu():
 	interaction.visible = false
 
-func set_pos_id(new_id : int) -> void:
-	position_id += new_id
+func set_pos_id(new_id : int, max_size : int) -> void:
+	position_id = (position_id + new_id) % max_size
+	if position_id < 0:
+		position_id += max_size
 		
-	position.x = 20 + position_id * size.x
+	position.x = position_id * size.x
 	
-	if position_id == 1:
-		background.self_modulate = Color.WHITE
-	else:
-		background.self_modulate = Color.RED
 
+func change_count(new : int) -> void:
+	item_count += new
+	if item_count <= 0: remove_item()
+
+func set_count(new : int) -> void:
+	item_count = new
+	if item_count <= 0: remove_item()
+
+func set_item(name : String, icon : ImageTexture) -> void:
+	item_name = name
+	item_icon = icon
+	item_count = 0
+	is_filled = true
+
+func remove_item() -> void:
+	item_count = 0
+	item_name = "None"
+	is_filled = false
 
 func _on_delete_button_down() -> void:
-	item_count -= 1
+	change_count(-1)

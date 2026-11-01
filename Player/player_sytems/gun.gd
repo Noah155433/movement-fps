@@ -67,7 +67,7 @@ func _on_fire_rate_timer_timeout() -> void:
 func _on_reload_timer_timeout() -> void:
 	reloading = false
 	if inventory.get_item_count("pistol_ammo") >= max_ammo - ammo:
-		inventory.add_count("pistol_ammo", -(max_ammo - ammo))
+		inventory.add_count(PickupItem._new("pistol_ammo", null, -(max_ammo - ammo)))
 		ammo = max_ammo
 	else:
 		ammo += inventory.get_item_count("pistol_ammo")

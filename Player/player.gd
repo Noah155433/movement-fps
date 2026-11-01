@@ -22,10 +22,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func pickUpItem(item : PickupItem):
-	inventory.add_count(item.item_name, item.item_count)
-	item.queue_free()
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

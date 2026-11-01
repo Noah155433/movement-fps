@@ -21,6 +21,7 @@ radius = 0.275
 
 [node name="PickupItem" type="Node3D" unique_id=39795739 groups=["interactable"]]
 script = ExtResource("1_nwjb2")
+item_icon = ExtResource("3_b78dm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1922405253]
 mesh = SubResource("BoxMesh_xhb2h")
