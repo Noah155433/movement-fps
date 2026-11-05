@@ -8,17 +8,17 @@ process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 512.0
+offset_right = 3840.0
+offset_bottom = 2160.0
 script = ExtResource("1_fom46")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1691572708]
 z_index = 1
-layout_mode = 0
-offset_left = 161.0
-offset_top = 61.0
-offset_right = 289.0
-offset_bottom = 189.0
+layout_mode = 1
+offset_left = 644.0
+offset_top = 94.0
+offset_right = 1156.0
+offset_bottom = 606.0
 texture = ExtResource("2_rvvf0")
 expand_mode = 1
 

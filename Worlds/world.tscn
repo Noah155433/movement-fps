@@ -3,10 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://1pm4c0m5aa7r" path="res://assets/ScriptAssets/TestDummy/enemy_test.tscn" id="1_fuoa0"]
 [ext_resource type="PackedScene" uid="uid://cfhu7r1xehmgt" path="res://Player/player.tscn" id="2_04avt"]
 [ext_resource type="PackedScene" uid="uid://3dxh6h6x3uir" path="res://assets/ScriptAssets/Door/door.tscn" id="3_r1b28"]
-[ext_resource type="PackedScene" uid="uid://d0d1h6yyg4ro6" path="res://assets/Models/props/trash-bags/bag_01.fbx" id="5_07imi"]
 [ext_resource type="PackedScene" uid="uid://btt65dxu7h1hu" path="res://Systems/ItemSystem/PickupItem.tscn" id="6_07imi"]
-[ext_resource type="PackedScene" uid="uid://dgl2mr6swokbw" path="res://assets/Models/props/trash-bags/bag_02.fbx" id="6_hdcsk"]
-[ext_resource type="PackedScene" uid="uid://ckr5u6gl43anh" path="res://assets/Models/props/trash-bags/bag_03.fbx" id="7_w2mg1"]
+[ext_resource type="Shader" uid="uid://yoncj2olgeyt" path="res://assets/shaders/water.gdshader" id="6_r1b28"]
+[ext_resource type="Script" uid="uid://dxlasmq3n6jpd" path="res://Systems/FlickeringLights/emissive_flickering_area_light_3d.gd" id="8_hdcsk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dgfsc"]
 size = Vector3(8, 0.5, 20)
@@ -153,6 +152,35 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1ebu8")
 
+[sub_resource type="Environment" id="Environment_07imi"]
+tonemap_mode = 3
+ssr_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.4
+glow_strength = 1.2
+glow_bloom = 1.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hdcsk"]
+dof_blur_far_transition = 10.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_r1b28"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okknv"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_r1b28")
+shader_parameter/reflect_texture = SubResource("ViewportTexture_r1b28")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eiqrc"]
+material = SubResource("ShaderMaterial_okknv")
+size = Vector2(1, 20)
+subdivide_width = 4
+subdivide_depth = 80
+
 [node name="World" type="Node3D" unique_id=1006344446]
 
 [node name="EnemyTest" parent="." unique_id=432576904 instance=ExtResource("1_fuoa0")]
@@ -229,34 +257,56 @@ mesh = SubResource("ArrayMesh_32hnd")
 [node name="Cube_004" type="MeshInstance3D" parent="room_02" unique_id=1097080298]
 mesh = SubResource("ArrayMesh_bteb2")
 
-[node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=609146372]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.9, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=146440195]
+environment = SubResource("Environment_07imi")
+camera_attributes = SubResource("CameraAttributesPractical_hdcsk")
+
+[node name="EmissiveFlickeringAreaLight3D" type="AreaLight3D" parent="." unique_id=1381294790]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 2.6)
 area_range = 10.0
-area_size = Vector2(1, 10)
+area_size = Vector2(0.2, 2)
+script = ExtResource("8_hdcsk")
+on_time = 0.0
+off_time = 0.0
+on_time_variation = 10.0
+off_time_variation = 1.0
+metadata/_custom_type_script = "uid://dxlasmq3n6jpd"
 
-[node name="bag_01" parent="." unique_id=1265782162 instance=ExtResource("5_07imi")]
-transform = Transform3D(0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0, 1, 4.800286, -0.87490124, -2.9958649)
+[node name="EmissiveFlickeringAreaLight3D3" type="AreaLight3D" parent="." unique_id=1869194079]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 7.6)
+visible = false
+area_range = 10.0
+area_size = Vector2(0.2, 2)
+script = ExtResource("8_hdcsk")
+on_time = 0.0
+off_time = 0.0
+on_time_variation = 10.0
+off_time_variation = 1.0
+metadata/_custom_type_script = "uid://dxlasmq3n6jpd"
 
-[node name="bag_02" parent="." unique_id=674857688 instance=ExtResource("6_hdcsk")]
-transform = Transform3D(0.96592593, 0.25881907, 0, -0.25881907, 0.96592593, 0, 0, 0, 1, 4.643311, -0.89733016, -2.5536242)
+[node name="EmissiveFlickeringAreaLight3D4" type="AreaLight3D" parent="." unique_id=1432725695]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, -7.3999996)
+visible = false
+area_range = 10.0
+area_size = Vector2(0.2, 2)
+script = ExtResource("8_hdcsk")
+on_time = 0.0
+off_time = 0.0
+on_time_variation = 10.0
+off_time_variation = 1.0
+metadata/_custom_type_script = "uid://dxlasmq3n6jpd"
 
-[node name="bag_03" parent="." unique_id=1730413211 instance=ExtResource("7_w2mg1")]
-transform = Transform3D(0.96592593, -0.25881907, 0, 0.25881907, 0.96592593, 0, 0, 0, 1, 4.4599223, -0.88143224, -2.987071)
+[node name="EmissiveFlickeringAreaLight3D2" type="AreaLight3D" parent="." unique_id=677060138]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, -2.5)
+area_range = 10.0
+area_size = Vector2(0.2, 2)
+script = ExtResource("8_hdcsk")
+on_time = 0.0
+off_time = 0.0
+on_time_variation = 10.0
+off_time_variation = 1.0
+metadata/_custom_type_script = "uid://dxlasmq3n6jpd"
 
-[node name="bag_04" parent="." unique_id=141168549 instance=ExtResource("5_07imi")]
-transform = Transform3D(-1.0000001, 0, 1.192093e-07, 0, 1.0000001, 0, -1.1920929e-07, 0, -1, 4.4338574, -0.9161451, -3.695175)
-
-[node name="bag_05" parent="." unique_id=1842824907 instance=ExtResource("6_hdcsk")]
-transform = Transform3D(-0.5, 0.86602545, 5.9604645e-08, 0.86602545, 0.5, -1.0323828e-07, -1.1920929e-07, 0, -1, 4.6331544, -0.764636, -4.1374154)
-
-[node name="bag_06" parent="." unique_id=1432223151 instance=ExtResource("7_w2mg1")]
-transform = Transform3D(-0.86602545, 0.5, 1.0323828e-07, 0.5, 0.86602545, -5.9604645e-08, -1.1920929e-07, 0, -1, 4.7837515, -0.9349608, -3.7039688)
-
-[node name="bag_07" parent="." unique_id=1356164975 instance=ExtResource("5_07imi")]
-transform = Transform3D(0.48809832, -0.28262946, -0.8257606, -0.3536894, 0.8008989, -0.48318213, 0.7979122, 0.5279031, 0.29095423, 4.849496, -0.81983733, -4.7732515)
-
-[node name="bag_08" parent="." unique_id=812209674 instance=ExtResource("6_hdcsk")]
-transform = Transform3D(-0.55035317, 0.83491355, -0.005567631, -0.24586084, -0.15568525, 0.95672077, 0.7979122, 0.5279031, 0.29095423, 4.594173, -0.5869268, -4.7114544)
-
-[node name="bag_09" parent="." unique_id=1656163168 instance=ExtResource("7_w2mg1")]
-transform = Transform3D(-0.21530856, 0.7004591, -0.6804406, -0.5630083, 0.4802869, 0.6725668, 0.7979122, 0.5279031, 0.29095423, 4.7406597, -0.8592643, -5.0518537)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1989391967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, -0.2, 0)
+mesh = SubResource("PlaneMesh_eiqrc")
