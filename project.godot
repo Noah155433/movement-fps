@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="First person story game"
-run/main_scene="uid://2eecviy1bbhw"
+run/main_scene="uid://bq7ye82l3edy6"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
