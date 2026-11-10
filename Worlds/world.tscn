@@ -452,91 +452,91 @@ camera_attributes = SubResource("CameraAttributesPractical_hdcsk")
 [node name="barrier" parent="Barriers" unique_id=363781457 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
 
-[node name="Cylinder" parent="Barriers/barrier" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier15" parent="Barriers" unique_id=1704796342 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
 
-[node name="Cylinder" parent="Barriers/barrier15" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier15" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier5" parent="Barriers" unique_id=900892018 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -3)
 
-[node name="Cylinder" parent="Barriers/barrier5" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier5" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier6" parent="Barriers" unique_id=1315711854 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -6)
 
-[node name="Cylinder" parent="Barriers/barrier6" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier6" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier7" parent="Barriers" unique_id=1262654375 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -9)
 
-[node name="Cylinder" parent="Barriers/barrier7" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier7" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier2" parent="Barriers" unique_id=356011588 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 3)
 
-[node name="Cylinder" parent="Barriers/barrier2" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier2" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier3" parent="Barriers" unique_id=963413902 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 6)
 
-[node name="Cylinder" parent="Barriers/barrier3" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier3" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier4" parent="Barriers" unique_id=1033383667 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 9)
 
-[node name="Cylinder" parent="Barriers/barrier4" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier4" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier8" parent="Barriers" unique_id=1853585645 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
 
-[node name="Cylinder" parent="Barriers/barrier8" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier8" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier9" parent="Barriers" unique_id=82864 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -3)
 
-[node name="Cylinder" parent="Barriers/barrier9" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier9" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier10" parent="Barriers" unique_id=329552789 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -6)
 
-[node name="Cylinder" parent="Barriers/barrier10" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier10" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier11" parent="Barriers" unique_id=1210667407 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -9)
 
-[node name="Cylinder" parent="Barriers/barrier11" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier11" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier12" parent="Barriers" unique_id=1340032777 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 3)
 
-[node name="Cylinder" parent="Barriers/barrier12" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier12" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier13" parent="Barriers" unique_id=1870884488 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 6)
 
-[node name="Cylinder" parent="Barriers/barrier13" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier13" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="barrier14" parent="Barriers" unique_id=172645427 instance=ExtResource("9_4qppp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 9)
 
-[node name="Cylinder" parent="Barriers/barrier14" index="0" unique_id=66738400]
+[node name="Cylinder" parent="Barriers/barrier14" index="0" unique_id=1497871197]
 mesh = SubResource("ArrayMesh_6idkr")
 
 [node name="LightmapGI" type="LightmapGI" parent="." unique_id=1044590829]
@@ -567,7 +567,7 @@ area_size = Vector2(0.3531333, 1.197297)
 
 [node name="room_03" parent="." unique_id=1219701430 instance=ExtResource("10_4qppp")]
 
-[node name="Cube_004" parent="room_03" index="0" unique_id=1731080164]
+[node name="Cube_004" parent="room_03" index="0" unique_id=148618014]
 mesh = SubResource("ArrayMesh_qkl34")
 
 [node name="Lights" type="Node3D" parent="." unique_id=959016502]
@@ -575,19 +575,19 @@ mesh = SubResource("ArrayMesh_qkl34")
 [node name="light_01" parent="Lights" unique_id=1040576761 instance=ExtResource("8_hdcsk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8000002, 0)
 
-[node name="Cube_013" parent="Lights/light_01" index="0" unique_id=2069461276]
+[node name="Cube_013" parent="Lights/light_01" index="0" unique_id=345164777]
 mesh = SubResource("ArrayMesh_4qppp")
 
 [node name="light_03" parent="Lights" unique_id=2139402800 instance=ExtResource("8_hdcsk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8000002, -5)
 
-[node name="Cube_013" parent="Lights/light_03" index="0" unique_id=2069461276]
+[node name="Cube_013" parent="Lights/light_03" index="0" unique_id=345164777]
 mesh = SubResource("ArrayMesh_4qppp")
 
 [node name="light_02" parent="Lights" unique_id=1958094520 instance=ExtResource("8_hdcsk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8000002, 5)
 
-[node name="Cube_013" parent="Lights/light_02" index="0" unique_id=2069461276]
+[node name="Cube_013" parent="Lights/light_02" index="0" unique_id=345164777]
 mesh = SubResource("ArrayMesh_4qppp")
 
 [node name="Pipes" type="Node3D" parent="." unique_id=89766057]
@@ -1090,70 +1090,70 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.47
 [node name="generator" parent="Generators" unique_id=313382825 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8388388, -0.2, -8.770933)
 
-[node name="Cube_003" parent="Generators/generator" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator2" parent="Generators" unique_id=132184039 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1611612, -0.2, -8.770933)
 
-[node name="Cube_003" parent="Generators/generator2" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator2" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator3" parent="Generators" unique_id=80146567 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8388388, -0.2, -5.770933)
 
-[node name="Cube_003" parent="Generators/generator3" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator3" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator4" parent="Generators" unique_id=452587168 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1611612, -0.2, -5.770933)
 
-[node name="Cube_003" parent="Generators/generator4" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator4" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator5" parent="Generators" unique_id=1421757320 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8388388, -0.2, -2.7709332)
 
-[node name="Cube_003" parent="Generators/generator5" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator5" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator6" parent="Generators" unique_id=582197836 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1611612, -0.2, -2.7709332)
 
-[node name="Cube_003" parent="Generators/generator6" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator6" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator7" parent="Generators" unique_id=985450405 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8388388, -0.2, 0.22906685)
 
-[node name="Cube_003" parent="Generators/generator7" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator7" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator8" parent="Generators" unique_id=1560937018 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1611612, -0.2, 0.22906685)
 
-[node name="Cube_003" parent="Generators/generator8" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator8" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator9" parent="Generators" unique_id=1944353264 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8388388, -0.2, 3.2290668)
 
-[node name="Cube_003" parent="Generators/generator9" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator9" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
 [node name="generator10" parent="Generators" unique_id=1083672947 instance=ExtResource("13_yn4g4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1611612, -0.2, 3.2290668)
 
-[node name="Cube_003" parent="Generators/generator10" index="0" unique_id=644497815]
+[node name="Cube_003" parent="Generators/generator10" index="0" unique_id=201646814]
 transform = Transform3D(-4.3711393e-06, 100.00001, 1.1920929e-05, 0, -1.1920929e-05, 100.00001, 100.000015, 4.371139e-06, 5.210804e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_h604q")
 
