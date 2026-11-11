@@ -2,21 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djj1mxvab5gc8"
-path.s3tc="res://.godot/imported/misc11.jpg-21f0aecf4ee402bbd5e17043168c6840.s3tc.ctex"
+uid="uid://bdl0hxmt7upad"
+path="res://.godot/imported/table_1.png-7e205aa58b904bcd7a4c4da20261dcf8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
+}
+generator_parameters={
+"md5": "269a1b719791223a77f69b5e791f47fc"
 }
 
 [deps]
 
-source_file="res://assets/Models/room_03/textures/misc11.jpg"
-dest_files=["res://.godot/imported/misc11.jpg-21f0aecf4ee402bbd5e17043168c6840.s3tc.ctex"]
+source_file="res://assets/Models/props/table_01/table_1.png"
+dest_files=["res://.godot/imported/table_1.png-7e205aa58b904bcd7a4c4da20261dcf8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -38,4 +40,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

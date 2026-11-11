@@ -71,6 +71,7 @@ one_shot = true
 target_position = Vector3(0, 0, -50)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerCam" unique_id=1997786960]
+visible = false
 mesh = SubResource("QuadMesh_dgfsc")
 
 [node name="Playermesh" type="MeshInstance3D" parent="." unique_id=1555559410]
