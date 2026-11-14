@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://244nrhjcdys"]
+
+[ext_resource type="Shader" uid="uid://w054q7utv05a" path="res://assets/shaders/material_shader_test.tres" id="1_8jvgq"]
+[ext_resource type="Texture2D" uid="uid://xdmwjof26mry" path="res://assets/Models/generator/textures/metal18.jpg" id="2_43tgp"]
+[ext_resource type="Texture2D" uid="uid://b45injyj5nass" path="res://assets/Models/generator/textures/metal18s.jpg" id="3_1gur2"]
+[ext_resource type="Texture2D" uid="uid://cfrqa1heicln5" path="res://assets/Models/generator/textures/metal18n.jpg" id="4_xirad"]
+
+[resource]
+resource_name = "Material"
+render_priority = 0
+shader = ExtResource("1_8jvgq")
+shader_parameter/Seamless_rotation = true
+shader_parameter/UV1 = Vector2(5, 5)
+shader_parameter/Rotation_noise_scale = Vector2(1, 1)
+shader_parameter/tex_frg_2 = ExtResource("2_43tgp")
+shader_parameter/tex_frg_12 = ExtResource("2_43tgp")
+shader_parameter/tex_frg_18 = ExtResource("3_1gur2")
+shader_parameter/tex_frg_17 = ExtResource("3_1gur2")
+shader_parameter/tex_frg_20 = ExtResource("4_xirad")
+shader_parameter/tex_frg_19 = ExtResource("4_xirad")
+shader_parameter/Normal_map_depth = 2.000000095

@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dghmjheu715bx"]
+
+[ext_resource type="Shader" uid="uid://w054q7utv05a" path="res://assets/shaders/material_shader_test.tres" id="1_v4klp"]
+[ext_resource type="Texture2D" uid="uid://baouana7hlrw4" path="res://assets/Models/props/light_01/textures/metal01.jpg" id="2_jpm6b"]
+[ext_resource type="Texture2D" uid="uid://pjhxmity0aw1" path="res://assets/Models/props/light_01/textures/metal01s.jpg" id="3_txjqn"]
+[ext_resource type="Texture2D" uid="uid://41k1ka4pk4o8" path="res://assets/Models/props/light_01/textures/metal01n.jpg" id="4_ip85m"]
+
+[resource]
+resource_name = "Material.013"
+render_priority = 0
+shader = ExtResource("1_v4klp")
+shader_parameter/Seamless_rotation = true
+shader_parameter/UV1 = Vector2(1, 1)
+shader_parameter/Rotation_noise_scale = Vector2(1, 1)
+shader_parameter/tex_frg_2 = ExtResource("2_jpm6b")
+shader_parameter/tex_frg_12 = ExtResource("2_jpm6b")
+shader_parameter/tex_frg_18 = ExtResource("3_txjqn")
+shader_parameter/tex_frg_17 = ExtResource("3_txjqn")
+shader_parameter/tex_frg_20 = ExtResource("4_ip85m")
+shader_parameter/tex_frg_19 = ExtResource("4_ip85m")
+shader_parameter/FloatParameter = 1.0

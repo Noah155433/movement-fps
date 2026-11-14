@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d0cgpatdflvnx"]
+
+[ext_resource type="Shader" uid="uid://w054q7utv05a" path="res://assets/shaders/material_shader_test.tres" id="1_thrch"]
+[ext_resource type="Texture2D" uid="uid://c81u2tqqluafj" path="res://assets/Models/generator/textures/metal02.jpg" id="2_thrch"]
+[ext_resource type="Texture2D" uid="uid://dej2e8k660mqp" path="res://assets/Models/generator/textures/metal02s.jpg" id="3_huf6x"]
+[ext_resource type="Texture2D" uid="uid://duaviafx2p7xt" path="res://assets/Models/generator/textures/metal02n.jpg" id="4_q7ano"]
+
+[resource]
+resource_name = "Material.002"
+render_priority = 0
+shader = ExtResource("1_thrch")
+shader_parameter/Seamless_rotation = true
+shader_parameter/UV1 = Vector2(3, 3)
+shader_parameter/Rotation_noise_scale = Vector2(1, 1)
+shader_parameter/tex_frg_2 = ExtResource("2_thrch")
+shader_parameter/tex_frg_12 = ExtResource("2_thrch")
+shader_parameter/tex_frg_18 = ExtResource("3_huf6x")
+shader_parameter/tex_frg_17 = ExtResource("3_huf6x")
+shader_parameter/tex_frg_20 = ExtResource("4_q7ano")
+shader_parameter/tex_frg_19 = ExtResource("4_q7ano")
+shader_parameter/Normal_map_depth = 1.0

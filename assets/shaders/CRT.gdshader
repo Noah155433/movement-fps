@@ -16,7 +16,7 @@ void fragment() {
 	ivec2 index = ivec2(pixel.x / 10, (pixel.y) / 10);
 	int char = msg[index.y * x + index.x];
 	ivec2 tex_index = ivec2((char % 16) * 10 + sub_pixel.x, char / 16 * 10 + sub_pixel.y);
-	bool on = texelFetch(bitmap, tex_index, 0).r > 0.5;
+	float color = texelFetch(bitmap, tex_index, 0).r;
 	
-	ALBEDO = vec3(float(on) * 2.0);
+	ALBEDO = vec3(color);
 }

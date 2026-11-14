@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://cta5m0jgeuroj" path="res://assets/shaders/CRT.gdshader" id="3_igjp4"]
 [ext_resource type="Texture2D" uid="uid://c1qkymra5gipx" path="res://assets/Textures/misc/rexpaint_cp437_10x10-3973149459.png" id="4_jnihq"]
 [ext_resource type="Texture2D" uid="uid://dm3u26v8o6wsn" path="res://assets/Models/props/crt_01/crt_1.png" id="5_is04t"]
+[ext_resource type="Texture2D" uid="uid://cn6wx85kqfawj" path="res://assets/Models/props/crt_01/crt_2.png" id="6_jnihq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ynk0"]
 render_priority = 0
@@ -16,6 +17,7 @@ shader_parameter/bitmap = ExtResource("4_jnihq")
 resource_name = "Material.002"
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("5_is04t")
+roughness_texture = ExtResource("6_jnihq")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
@@ -87,5 +89,14 @@ script = ExtResource("1_4kwka")
 
 [node name="Plane_001" parent="crt" index="0" unique_id=613797927]
 mesh = SubResource("ArrayMesh_6rwt2")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="crt" unique_id=1869079395]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.14591697, 0.10737543)
+light_energy = 0.3
+light_size = 0.05
+light_bake_mode = 1
+shadow_enabled = true
+area_range = 0.46
+area_size = Vector2(0.27383167, 0.036444947)
 
 [editable path="crt"]

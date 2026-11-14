@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://brhl1bhmh21ia"]
+
+[ext_resource type="Shader" uid="uid://w054q7utv05a" path="res://assets/shaders/material_shader_test.tres" id="1_hyxjf"]
+[ext_resource type="Texture2D" uid="uid://b5krf1sp7hlfd" path="res://assets/Models/props/door_01/textures/stone02.jpg" id="2_r7m7g"]
+[ext_resource type="Texture2D" uid="uid://bbk7htwmq2kx3" path="res://assets/Models/props/door_01/textures/stone02s.jpg" id="3_cva55"]
+[ext_resource type="Texture2D" uid="uid://cidj73osng418" path="res://assets/Models/props/door_01/textures/stone02n.jpg" id="4_7lvpg"]
+
+[resource]
+resource_name = "Material.005"
+render_priority = 0
+shader = ExtResource("1_hyxjf")
+shader_parameter/Seamless_rotation = true
+shader_parameter/UV1 = Vector2(2, 2)
+shader_parameter/Rotation_noise_scale = Vector2(0.2, 0.2)
+shader_parameter/tex_frg_2 = ExtResource("2_r7m7g")
+shader_parameter/tex_frg_12 = ExtResource("2_r7m7g")
+shader_parameter/tex_frg_18 = ExtResource("3_cva55")
+shader_parameter/tex_frg_17 = ExtResource("3_cva55")
+shader_parameter/tex_frg_20 = ExtResource("4_7lvpg")
+shader_parameter/tex_frg_19 = ExtResource("4_7lvpg")
+shader_parameter/Normal_map_depth = 1.0

@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cbusaugb8hfym"]
+
+[ext_resource type="Shader" uid="uid://w054q7utv05a" path="res://assets/shaders/material_shader_test.tres" id="1_dj53i"]
+[ext_resource type="Texture2D" uid="uid://c0sqmgui2tvyb" path="res://assets/Models/props/barrier_01/textures/plaster08.jpg" id="2_qjea2"]
+[ext_resource type="Texture2D" uid="uid://dxkur4q1vm5nr" path="res://assets/Models/props/barrier_01/textures/plaster08s.jpg" id="3_k1hro"]
+[ext_resource type="Texture2D" uid="uid://d3iu5q7hh64gv" path="res://assets/Models/props/barrier_01/textures/plaster08n.jpg" id="4_r37rq"]
+
+[resource]
+resource_name = "Material.006"
+render_priority = 0
+shader = ExtResource("1_dj53i")
+shader_parameter/Seamless_rotation = true
+shader_parameter/UV1 = Vector2(1, 1)
+shader_parameter/Rotation_noise_scale = Vector2(1, 1)
+shader_parameter/tex_frg_2 = ExtResource("2_qjea2")
+shader_parameter/tex_frg_12 = ExtResource("2_qjea2")
+shader_parameter/tex_frg_18 = ExtResource("3_k1hro")
+shader_parameter/tex_frg_17 = ExtResource("3_k1hro")
+shader_parameter/tex_frg_20 = ExtResource("4_r37rq")
+shader_parameter/tex_frg_19 = ExtResource("4_r37rq")
+shader_parameter/Normal_map_depth = 1.0

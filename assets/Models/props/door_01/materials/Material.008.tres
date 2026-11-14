@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dyqj4mn2s1ql0"]
+
+[ext_resource type="Shader" uid="uid://w054q7utv05a" path="res://assets/shaders/material_shader_test.tres" id="1_vo7ov"]
+[ext_resource type="Texture2D" uid="uid://b5rpwy0gtiu7p" path="res://assets/Models/props/door_01/textures/metal18.jpg" id="2_hr2dw"]
+[ext_resource type="Texture2D" uid="uid://bipmeif35ceg4" path="res://assets/Models/props/door_01/textures/metal18s.jpg" id="3_yxm1l"]
+[ext_resource type="Texture2D" uid="uid://dybonlomrocta" path="res://assets/Models/props/door_01/textures/metal18n.jpg" id="4_pic7m"]
+
+[resource]
+resource_name = "Material.008"
+render_priority = 0
+shader = ExtResource("1_vo7ov")
+shader_parameter/Seamless_rotation = false
+shader_parameter/UV1 = Vector2(2, 2)
+shader_parameter/Rotation_noise_scale = Vector2(1, 1)
+shader_parameter/tex_frg_2 = ExtResource("2_hr2dw")
+shader_parameter/tex_frg_12 = ExtResource("2_hr2dw")
+shader_parameter/tex_frg_18 = ExtResource("3_yxm1l")
+shader_parameter/tex_frg_17 = ExtResource("3_yxm1l")
+shader_parameter/tex_frg_20 = ExtResource("4_pic7m")
+shader_parameter/tex_frg_19 = ExtResource("4_pic7m")
+shader_parameter/Normal_map_depth = 1.0
