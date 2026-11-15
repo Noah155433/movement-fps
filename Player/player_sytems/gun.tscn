@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cnu54q5d552gh"]
+
+[ext_resource type="Script" uid="uid://cudvr4n48h7f5" path="res://Player/player_sytems/gun.gd" id="1_w6l3p"]
+[ext_resource type="PackedScene" uid="uid://c61kebk2vvf4r" path="res://assets/Particles/WorldHitParticle/world_hit_particles.tscn" id="2_s2k5n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_aphfy"]
+size = Vector3(0.1, 0.1, 0.3)
+
+[node name="Gun" type="Node3D" unique_id=1394152723 node_paths=PackedStringArray("gun_ray", "fire_rate_timer", "reload_timer")]
+script = ExtResource("1_w6l3p")
+gun_ray = NodePath("GunRay")
+hit_particle = ExtResource("2_s2k5n")
+fire_rate_timer = NodePath("FireRateTimer")
+reload_timer = NodePath("ReloadTimer")
+
+[node name="GunRay" type="RayCast3D" parent="." unique_id=1664772912]
+target_position = Vector3(0, 0, -50)
+
+[node name="GunMesh" type="MeshInstance3D" parent="." unique_id=1586462736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5221501, -0.25610387, -0.4158945)
+mesh = SubResource("BoxMesh_aphfy")
+
+[node name="FireRateTimer" type="Timer" parent="." unique_id=1783242775]
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="." unique_id=446256913]
+one_shot = true
+
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
