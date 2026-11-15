@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qv1h0y4v5kdq" path="res://Player/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://7ihpsttoqifi" path="res://Player/player_sytems/interact_ray.gd" id="2_k53q1"]
+[ext_resource type="PackedScene" uid="uid://dmfdl62n6kj0l" path="res://assets/Models/radio/radio.glb" id="2_vtle1"]
 [ext_resource type="Script" uid="uid://b5p0jj0mvfrxb" path="res://Player/player_sytems/ui.gd" id="5_qlg0r"]
 [ext_resource type="Shader" uid="uid://cta5m0jgeuroj" path="res://assets/shaders/CRT.gdshader" id="5_vtle1"]
 [ext_resource type="PackedScene" uid="uid://bg364xwaw6y3n" path="res://Player/player_sytems/inventory.tscn" id="6_fhl08"]
@@ -37,6 +38,9 @@ shape = SubResource("CapsuleShape3D_dgfsc")
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=900610227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 current = true
+
+[node name="radio" parent="PlayerCam" unique_id=1653718185 instance=ExtResource("2_vtle1")]
+transform = Transform3D(0.873036, 0.20543258, -0.44227314, 0, 0.9069373, 0.4212656, 0.4876557, -0.36778006, 0.79178894, 0.4030739, -0.23795211, -0.60946554)
 
 [node name="InteractRay" type="RayCast3D" parent="PlayerCam" unique_id=483904261 node_paths=PackedStringArray("player")]
 target_position = Vector3(0, 0, -3)

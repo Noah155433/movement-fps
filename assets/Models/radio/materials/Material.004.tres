@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b1cpqd357kae8"]
+
+[ext_resource type="Texture2D" uid="uid://bwsl45ec5yeww" path="res://assets/Models/radio/textures/freq.png" id="1_ml082"]
+
+[resource]
+resource_name = "Material.004"
+transparency = 4
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_texture = ExtResource("1_ml082")
+roughness = 0.5
