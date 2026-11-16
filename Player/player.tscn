@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://cta5m0jgeuroj" path="res://assets/shaders/CRT.gdshader" id="5_vtle1"]
 [ext_resource type="PackedScene" uid="uid://bg364xwaw6y3n" path="res://Player/player_sytems/inventory.tscn" id="6_fhl08"]
 [ext_resource type="Texture2D" uid="uid://c1qkymra5gipx" path="res://assets/Textures/misc/rexpaint_cp437_10x10-3973149459.png" id="6_od3ui"]
+[ext_resource type="PackedScene" uid="uid://bivsxp2w7ycjl" path="res://Systems/Radio/BetterRadio.tscn" id="8_od3ui"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
@@ -86,3 +87,5 @@ vertical_alignment = 1
 
 [node name="Inventory" parent="UI" unique_id=1896112937 instance=ExtResource("6_fhl08")]
 layout_mode = 0
+
+[node name="BetterRadio" parent="." unique_id=762214389 instance=ExtResource("8_od3ui")]

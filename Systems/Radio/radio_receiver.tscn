@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://s10q075m610v"]
+
+[ext_resource type="Script" uid="uid://b6dxmnk0xqu2g" path="res://Systems/Radio/radio_receiver.gd" id="1_ks35h"]
+
+[node name="RadioReceiver" type="AudioStreamPlayer" unique_id=675266189]
+script = ExtResource("1_ks35h")
