@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://qv1h0y4v5kdq" path="res://Player/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://7ihpsttoqifi" path="res://Player/player_sytems/interact_ray.gd" id="2_k53q1"]
 [ext_resource type="PackedScene" uid="uid://dmfdl62n6kj0l" path="res://assets/Models/radio/radio.glb" id="2_vtle1"]
+[ext_resource type="Script" uid="uid://chnkyvtc38br1" path="res://assets/Models/radio/radio.gd" id="3_00tjw"]
 [ext_resource type="Script" uid="uid://b5p0jj0mvfrxb" path="res://Player/player_sytems/ui.gd" id="5_qlg0r"]
 [ext_resource type="Shader" uid="uid://cta5m0jgeuroj" path="res://assets/shaders/CRT.gdshader" id="5_vtle1"]
 [ext_resource type="PackedScene" uid="uid://bg364xwaw6y3n" path="res://Player/player_sytems/inventory.tscn" id="6_fhl08"]
 [ext_resource type="Texture2D" uid="uid://c1qkymra5gipx" path="res://assets/Textures/misc/rexpaint_cp437_10x10-3973149459.png" id="6_od3ui"]
 [ext_resource type="PackedScene" uid="uid://bivsxp2w7ycjl" path="res://Systems/Radio/BetterRadio.tscn" id="8_od3ui"]
+[ext_resource type="AudioStream" uid="uid://cekohd4y5uij1" path="res://Systems/Radio/radioSounds/Morse Code - I Love You.wav" id="10_x3vf3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgfsc"]
 radius = 0.4
@@ -40,8 +42,11 @@ shape = SubResource("CapsuleShape3D_dgfsc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 current = true
 
-[node name="radio" parent="PlayerCam" unique_id=1653718185 instance=ExtResource("2_vtle1")]
+[node name="radio" parent="PlayerCam" unique_id=1653718185 node_paths=PackedStringArray("pin", "knob") instance=ExtResource("2_vtle1")]
 transform = Transform3D(0.873036, 0.20543258, -0.44227314, 0, 0.9069373, 0.4212656, 0.4876557, -0.36778006, 0.79178894, 0.4030739, -0.23795211, -0.60946554)
+script = ExtResource("3_00tjw")
+pin = NodePath("Cube/Plane_001")
+knob = NodePath("Cube/Cylinder_002")
 
 [node name="InteractRay" type="RayCast3D" parent="PlayerCam" unique_id=483904261 node_paths=PackedStringArray("player")]
 target_position = Vector3(0, 0, -3)
@@ -89,3 +94,10 @@ vertical_alignment = 1
 layout_mode = 0
 
 [node name="BetterRadio" parent="." unique_id=762214389 instance=ExtResource("8_od3ui")]
+audio_stream = ExtResource("10_x3vf3")
+
+[node name="BetterRadio2" parent="." unique_id=1500856575 instance=ExtResource("8_od3ui")]
+audio_stream = ExtResource("10_x3vf3")
+freq = 100.0
+
+[editable path="PlayerCam/radio"]

@@ -43,22 +43,22 @@ _subresources={
 "materials": {
 "Material": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/Models/generator/materials/Material.tres",
+"use_external/fallback_path": "res://assets/Models/generator/materials/Metal18.tres",
 "use_external/path": "uid://244nrhjcdys"
 },
 "Material.002": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/Models/generator/materials/Material.002.tres",
+"use_external/fallback_path": "res://assets/Models/generator/materials/Metal02.tres",
 "use_external/path": "uid://d0cgpatdflvnx"
 },
 "Material.007": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/Models/generator/materials/Material.007.tres",
+"use_external/fallback_path": "res://assets/Models/generator/materials/Metal09.tres",
 "use_external/path": "uid://f5wqt3ngn8lg"
 },
 "Material.009": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/Models/generator/materials/Material.009.tres",
+"use_external/fallback_path": "res://assets/Models/generator/materials/Metal19.tres",
 "use_external/path": "uid://ck1mkp1gg61j7"
 },
 "Material.020": {

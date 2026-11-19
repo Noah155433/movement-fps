@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://d1ntdhhgvw701"]
-
-[ext_resource type="Script" uid="uid://dc4juewibesw3" path="res://Systems/Radio/radio_transmitter.gd" id="1_kae4e"]
-
-[node name="RadioTransmitter" type="Node3D" unique_id=870748079]
-script = ExtResource("1_kae4e")
-msg = "10101010"

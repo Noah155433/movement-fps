@@ -43,7 +43,7 @@ _subresources={
 "materials": {
 "Material.006": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/Models/props/barrier_01/materials/Material.006.tres",
+"use_external/fallback_path": "res://assets/Models/props/barrier_01/materials/Plaster08.tres",
 "use_external/path": "uid://cbusaugb8hfym"
 }
 }
