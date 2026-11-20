@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=3840
 window/size/viewport_height=2160
 window/size/mode=3
+window/hdr/request_hdr_output=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -106,4 +107,7 @@ joypads/ignore_joypad_on_unfocused_application=true
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+viewport/hdr_2d=true
+anti_aliasing/quality/msaa_2d=1
+anti_aliasing/quality/msaa_3d=1
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c0palk7e7bnfe" path="res://assets/Models/generator/generator.glb" id="9_qkl34"]
 [ext_resource type="PackedScene" uid="uid://cl0srh8a8cx6t" path="res://assets/Models/props/door_01/door.glb" id="11_25de1"]
 [ext_resource type="PackedScene" uid="uid://b6p7p7ro03xor" path="res://assets/Models/props/table_01/table.glb" id="11_qxe63"]
+[ext_resource type="Texture2D" uid="uid://dtvqku0cp0rel" path="res://assets/Textures/result.jpg" id="12_25de1"]
 [ext_resource type="PackedScene" uid="uid://wpw8a6sgj0p2" path="res://assets/Models/props/barrier_01/barrier.glb" id="19_5es2h"]
 [ext_resource type="PackedScene" uid="uid://cupkdb6tijh30" path="res://assets/Models/props/pipe_01/pipe_01.glb" id="20_uy40c"]
 [ext_resource type="PackedScene" uid="uid://bbro6uk0njom3" path="res://assets/Models/room_03/Room3.glb" id="23_hqv4u"]
@@ -25,12 +26,144 @@ size = Vector3(0.8, 1.6024139, 0.8022175)
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
 tonemap_mode = 3
+ssr_enabled = true
+ssao_enabled = true
 sdfgi_use_occlusion = true
 glow_enabled = true
+glow_normalized = true
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hdcsk"]
 dof_blur_far_transition = 10.0
+
+[sub_resource type="Curve" id="Curve_qxe63"]
+_limits = [0.0, 3.0, 0.0, 3.0]
+_data = [Vector2(0, 3), 0.0, -3.8815372, 0, 0, Vector2(2.9999998, 0.04347825), 0.11021656, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_few71"]
+curve = SubResource("Curve_qxe63")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgfsc"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+spread = 20.0
+initial_velocity_min = 0.29999998
+initial_velocity_max = 0.5
+gravity = Vector3(0, 1, 0)
+damping_min = 0.2
+damping_max = 0.2
+scale_min = 0.5
+scale_max = 2.0
+scale_over_velocity_max = 1.0
+scale_over_velocity_curve = SubResource("CurveTexture_few71")
+
+[sub_resource type="Shader" id="Shader_25de1"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.7.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform int particles_anim_h_frames : hint_range(1, 128);
+uniform int particles_anim_v_frames : hint_range(1, 128);
+uniform bool particles_anim_loop;
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+
+	// Billboard Mode: Particles
+	mat4 mat_world = mat4(
+			normalize(INV_VIEW_MATRIX[0]),
+			normalize(INV_VIEW_MATRIX[1]),
+			normalize(INV_VIEW_MATRIX[2]),
+			MODEL_MATRIX[3]);
+	mat_world = mat_world * mat4(
+			vec4(cos(INSTANCE_CUSTOM.x), -sin(INSTANCE_CUSTOM.x), 0.0, 0.0),
+			vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0),
+			vec4(0.0, 0.0, 1.0, 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat_world;
+
+	// Billboard Keep Scale: Enabled
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(
+			vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0),
+			vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
+			vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+
+	float h_frames = float(particles_anim_h_frames);
+	float v_frames = float(particles_anim_v_frames);
+	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
+	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
+	if (!particles_anim_loop) {
+		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
+	} else {
+		particle_frame = mod(particle_frame, particle_total_frames);
+	}
+	UV /= vec2(h_frames, v_frames);
+	UV += vec2(mod(particle_frame, h_frames) / h_frames, floor((particle_frame + 0.5) / h_frames) / v_frames);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo_tex.r;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5n3ns"]
+render_priority = 0
+shader = SubResource("Shader_25de1")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("12_25de1")
+shader_parameter/albedo_texture_size = Vector2i(720, 479)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/particles_anim_h_frames = 1
+shader_parameter/particles_anim_v_frames = 1
+shader_parameter/particles_anim_loop = false
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xa4cx"]
+material = SubResource("ShaderMaterial_5n3ns")
+size = Vector2(0.1, 0.1)
 
 [node name="World" type="Node3D" unique_id=1006344446]
 
@@ -179,11 +312,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 1, -9)
 
 [node name="LightmapGI" type="LightmapGI" parent="." unique_id=1044590829]
 quality = 3
-supersampling = true
 bounces = 5
 directional = true
-interior = true
-generate_probes_subdiv = 3
 light_data = ExtResource("6_4qppp")
 
 [node name="Lights" type="Node3D" parent="." unique_id=959016502]
@@ -191,11 +321,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
 
 [node name="light" parent="Lights" unique_id=405974506 instance=ExtResource("7_i53fm")]
 
+[node name="AreaLight3D" type="AreaLight3D" parent="Lights/light" unique_id=955600010]
+transform = Transform3D(1.9106855e-15, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 1, -1, 0, -4.371139e-08, 0, -0.18638563, 0)
+shadow_enabled = true
+area_size = Vector2(1.1888162, 0.37125647)
+
 [node name="light2" parent="Lights" unique_id=475490413 instance=ExtResource("7_i53fm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
+[node name="AreaLight3D3" type="AreaLight3D" parent="Lights/light2" unique_id=2122856663]
+transform = Transform3D(1.9106855e-15, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 1, -1, 0, -4.371139e-08, 0, -0.18638563, 0)
+shadow_enabled = true
+area_size = Vector2(1.1888162, 0.37125647)
+
 [node name="light3" parent="Lights" unique_id=138208272 instance=ExtResource("7_i53fm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="AreaLight3D2" type="AreaLight3D" parent="Lights/light3" unique_id=1340776071]
+transform = Transform3D(1.9106855e-15, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 1, -1, 0, -4.371139e-08, 0, -0.18638563, 0)
+shadow_enabled = true
+area_size = Vector2(1.1888162, 0.37125647)
 
 [node name="Generators" type="Node3D" parent="." unique_id=1561971401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16930018, 0)
@@ -203,38 +348,146 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16930018, 0)
 [node name="generator" parent="Generators" unique_id=2101636398 instance=ExtResource("9_qkl34")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2805552, 0, -8.667591)
 
-[node name="generator2" parent="Generators" unique_id=1388686165 instance=ExtResource("9_qkl34")]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator" unique_id=1032922522]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator2" parent="Generators" unique_id=394768140 instance=ExtResource("9_qkl34")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2805552, 0, -5.667591)
 
-[node name="generator3" parent="Generators" unique_id=796959636 instance=ExtResource("9_qkl34")]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator2" unique_id=303726035]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator3" parent="Generators" unique_id=196159698 instance=ExtResource("9_qkl34")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2805552, 0, -2.667591)
 
-[node name="generator4" parent="Generators" unique_id=404545652 instance=ExtResource("9_qkl34")]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator3" unique_id=445161939]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator4" parent="Generators" unique_id=426905048 instance=ExtResource("9_qkl34")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2805552, 0, 0.3324089)
 
-[node name="generator5" parent="Generators" unique_id=1627783189 instance=ExtResource("9_qkl34")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, -8.667591)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator4" unique_id=1437045110]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
 
-[node name="generator6" parent="Generators" unique_id=1136452966 instance=ExtResource("9_qkl34")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, -5.667591)
-
-[node name="generator7" parent="Generators" unique_id=1891224202 instance=ExtResource("9_qkl34")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, -2.667591)
-
-[node name="generator8" parent="Generators" unique_id=1365681034 instance=ExtResource("9_qkl34")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, 0.3324089)
-
-[node name="generator9" parent="Generators" unique_id=1871832278 instance=ExtResource("9_qkl34")]
+[node name="generator5" parent="Generators" unique_id=1274608020 instance=ExtResource("9_qkl34")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2805552, 0, 3.332409)
 
-[node name="generator10" parent="Generators" unique_id=397626707 instance=ExtResource("9_qkl34")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, 3.332409)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator5" unique_id=724614639]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
 
-[node name="generator11" parent="Generators" unique_id=954834765 instance=ExtResource("9_qkl34")]
+[node name="generator6" parent="Generators" unique_id=1965627743 instance=ExtResource("9_qkl34")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2805552, 0, 6.332409)
 
-[node name="generator12" parent="Generators" unique_id=1505182326 instance=ExtResource("9_qkl34")]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator6" unique_id=1966323007]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator7" parent="Generators" unique_id=38627717 instance=ExtResource("9_qkl34")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, -8.667591)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator7" unique_id=2032786088]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator8" parent="Generators" unique_id=1467723096 instance=ExtResource("9_qkl34")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, -5.667591)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator8" unique_id=1132787709]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator9" parent="Generators" unique_id=637616062 instance=ExtResource("9_qkl34")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, -2.667591)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator9" unique_id=682729826]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator10" parent="Generators" unique_id=781070183 instance=ExtResource("9_qkl34")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, 0.3324089)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator10" unique_id=1194048245]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator11" parent="Generators" unique_id=228555356 instance=ExtResource("9_qkl34")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, 3.332409)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator11" unique_id=153613220]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
+
+[node name="generator12" parent="Generators" unique_id=834612125 instance=ExtResource("9_qkl34")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.2194448, 0, 6.332409)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Generators/generator12" unique_id=1463876634]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.79601, 1.554121, -0.67983747)
+layers = 3
+amount = 200
+lifetime = 1.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgfsc")
+draw_pass_1 = SubResource("QuadMesh_xa4cx")
 
 [node name="Room3" parent="." unique_id=258818055 instance=ExtResource("23_hqv4u")]
 

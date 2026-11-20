@@ -1,12 +1,20 @@
 [gd_scene format=3 uid="uid://bivsxp2w7ycjl"]
 
 [ext_resource type="Script" uid="uid://dwnmndv3o2bbn" path="res://Systems/Radio/better_radio.gd" id="1_wtxne"]
-[ext_resource type="AudioStream" uid="uid://cekohd4y5uij1" path="res://Systems/Radio/radioSounds/Morse Code - I Love You.wav" id="2_fdjga"]
+[ext_resource type="PackedScene" uid="uid://dmfdl62n6kj0l" path="res://assets/Models/radio/radio.glb" id="2_j8uhv"]
+[ext_resource type="AudioStream" uid="uid://dfqwxg8s2q3e3" path="res://Systems/Radio/radioSounds/459885__wildegnux__radio-am-scanning.wav" id="3_j8uhv"]
 
-[node name="BetterRadio" type="Node3D" unique_id=762214389 node_paths=PackedStringArray("audio_player")]
+[node name="BetterRadio" type="Node3D" unique_id=762214389 node_paths=PackedStringArray("pin", "knob", "static_player")]
 script = ExtResource("1_wtxne")
-audio_player = NodePath("audio_player")
+pin = NodePath("radio/Cube/Plane_001")
+knob = NodePath("radio/Cube/Cylinder_002")
+static_player = NodePath("audio_player")
+
+[node name="radio" parent="." unique_id=18970219 instance=ExtResource("2_j8uhv")]
 
 [node name="audio_player" type="AudioStreamPlayer3D" parent="." unique_id=928708166]
-stream = ExtResource("2_fdjga")
+stream = ExtResource("3_j8uhv")
+volume_db = -50.0
 autoplay = true
+
+[editable path="radio"]
